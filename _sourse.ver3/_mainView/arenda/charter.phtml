@@ -1,0 +1,21 @@
+
+    <div class="flash">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="774" height="348">
+        <param name="movie" value="<?=$flash ?>" />
+        <param name="wmode" value="opaque" />
+
+
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="<?=$flash ?>" width="774" height="348">
+            <param name="wmode" value="opaque" />
+            <!--<![endif]-->
+            <?=$flashContent ?>
+            <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+    </object>
+    </div>
+
+    <div class="text_block3">
+        <?=$content ?>
+    </div>

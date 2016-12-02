@@ -1,0 +1,72 @@
+<?=$main_list->htmlStartForm('filter') ?>
+	<table class="table_position">
+	<tr class="header_col">
+<!--	<td width="50%">
+	Контактное лицо<br /><input name="name" id="name" type="text" value="<?=$name ?>" class="width50">
+	<?=cmfAdminView::onclickType1("filter.postAjax('changeFilter');", 'Найти') ?>&nbsp;&nbsp;
+	<?=cmfAdminView::onclickType1("cmf.setValue('name', ''); filter.postAjax('changeFilter');", 'Сброс') ?>
+	</td>-->
+	<td width="50%">
+		Почта <br /><input name="email" id="email" type="text" value="<?=$email ?>" class="width50">
+		<?=cmfAdminView::onclickType1("filter.postAjax('changeFilter');", 'Найти') ?>&nbsp;&nbsp;
+		<?=cmfAdminView::onclickType1("cmf.setValue('email', ''); filter.postAjax('changeFilter');", 'Сброс') ?>
+	</td>
+	</tr>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td>Логин</td>
+	<td width="200px">Дата/<br />ip-proxy последнего захода</td>
+	<td width="150px">Действия</td>
+	<td width="22px">Вкл</td>
+	<td width="22px">Уд.</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+
+	<td><? if($key) echo cmfAdminView::buttonType3($main_list->getEditUrl(), $data->login) ?></td>
+	<td><?=$data->sesDate ?><br><?=$data->sesIp ?>(<?=$data->sesProxy ?>)</td>
+
+	<td>
+		<? 	$userUnban = !$data->is('ban') ? 'cmfHide' : '';
+			$userExit = $data->is('ban') ? 'cmfHide' : '';
+		?>
+		<div id="userUnban<?=$key ?>" class="<?=$userUnban ?>">
+		<?=cmfAdminView::onclickType1("modul.ajax('userUnban', '$key');", 'Разбан') ?>
+		</div>
+		<div id="userExit<?=$key ?>" class="<?=$userExit ?>">
+		<?=cmfAdminView::onclickType1("modul.ajax('userExit', '$key');", 'Выход') ?>
+		</div>
+	</td>
+
+	<td>
+        <? if($data->register==='no') { ?>
+            <?=cmfAdminView::onclickType1("modul.postAjax('activate', '$key');", 'Активировать') ?>
+        <? } else { ?>
+            <?=$form->html('visible') ?>
+        <? } ?>
+	</td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+	</td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

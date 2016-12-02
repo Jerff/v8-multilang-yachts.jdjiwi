@@ -1,0 +1,90 @@
+<div class="yachttype yachttype-wallpapers yachttype-form">
+    <ul class="tabs">
+        <li class="current"><span><?= word('Аренда') ?></span></li>
+        <li><span><a href="<?= $saleUrl ?>"><?= word('Продажа') ?></a></span></li>
+    </ul>
+    <div class="box visible">
+        <div class="box-form">
+            <p><a name="form"></a></p>
+            <? if (isset($yachts)) { ?>
+                <h3><?= word('Ваши персональные данные для заказа') ?> "<?= $yachts ?>"</h3>
+            <? } else { ?>
+                <h3><?= word('Ваши персональные и данные подбора яхты') ?></h3>
+            <? } ?>
+            <div id="feedback">
+                <?= $request->startForm('', 'Форма аренды яхты') ?>
+                <?= $request->formError() ?>
+                <p class="cmfHide">
+                    <?= $contact->viewError('login') ?>
+                    <label for="name" ><span style="color: #ff0000;">*</span> <?= word('Фамилия, имя, отчество') ?></label>
+                    <?= $contact->html('login', 'class=""') ?>
+                </p>
+                <p class="cmfHide">
+                    <?= $data->viewError('yachts') ?>
+                    <label for="name" ><span style="color: #ff0000;">*</span> <?= word('Яхта') ?></label>
+                    <?= $data->html('yachts', 'class=""') ?>
+                </p>
+                <p>
+                    <?= $contact->viewError('name') ?>
+                    <label for="name" ><span style="color: #ff0000;">*</span> <?= word('Имя') ?></label>
+                    <?= $contact->html('name', 'class=""') ?>
+                </p>
+                <p>
+                    <?= $contact->viewError('email') ?>
+                    <label for="email" ><span style="color: #ff0000;">*</span> <?= word('Электронная почта') ?></label>
+                    <?= $contact->html('email', 'class=""') ?>
+                </p>
+                <p>
+                    <?= $contact->viewError('phone') ?>
+                    <label for="name" ><span style="color: #ff0000;">*</span> <?= word('Контактный телефон') ?></label>
+                    <?= $contact->html('phone', 'class=""') ?>
+                </p>
+                <? /*
+                  <p>
+                  <?= $data->viewError('charter') ?>
+                  <label>&nbsp; <?= word('Регион чартера') ?></label>
+                  <?= $data->html('charter', 'class=""') ?>
+                  </p>
+                  <p>
+                  <?= $data->viewError('typeYacht') ?>
+                  <label>&nbsp; <?= word('Тип яхты') ?></label>
+                  <?= $data->html('typeYacht', 'class=""') ?>
+                  </p>
+                  <p>
+                  <?= $data->viewError('typeYacht') ?>
+                  <label>&nbsp; <?= word('Сроки аренды') ?></label>
+                  <?= $data->html('date2', 'class=""') ?>
+                  <span class="period"><?= word('до') ?></span>
+                  <?= $data->html('date1', 'class=""') ?>
+                  <span class="period"><?= word('с') ?></span>
+                  </p>
+                  <p>
+                  <?= $data->viewError('length') ?>
+                  <label for="name" >&nbsp; <?= word('Длина яхты') ?></label>
+                  <? $text = word('пример: 45 метров') ?>
+                  <?= $data->html('length', 'class="" value="' . $text . '" data-default="' . $text . '"') ?>
+                  </p>
+                  <p>
+                  <?= $data->viewError('gost') ?>
+                  <label for="guest" >&nbsp; <?= word('Количество гостей') ?></label>
+                  <?= $data->html('gost', 'class=""') ?>
+                  </p>
+                 */ ?>
+                <p>
+                    <?= $data->viewError('notice') ?>
+                    <label for="comments" ><span style="color: #ff0000;">*</span> <?= word('Текст сообщения') ?></label>
+                    <?= $data->html('notice', 'class=""') ?>
+                </p>
+                <!--                <div class="captcha">
+                                    <p>Введите код:</p>
+                                    <p><img src="/manager/includes/veriword.php?rand=5976" alt="Код проверки" />&nbsp;&nbsp;<span class="formwrap_small"><input class="vericodeform" name="vericode" type="text" value="" /></span></p>
+                                </div>-->
+                <div class="empty"></div>
+                <p><input type="submit"  value="<?= word('Отправить') ?>" /></p>
+                <p class="clear"><span style="font-size: 90%;"><?= word('Поля отмеченные') ?> <span style="color: #ff0000;">* </span><?= word('обязательны для заполнения') ?>.</span></p>
+                <?= $request->endForm() ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="empty"></div>

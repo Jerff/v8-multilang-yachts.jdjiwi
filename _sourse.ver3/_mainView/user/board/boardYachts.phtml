@@ -1,0 +1,27 @@
+<? if (isset($mBoard)) { ?>
+    <div class="yachttype yachttype-link yachttype-sale">
+        <div class="box visible">
+            <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+            <div class="empty"></div>
+            <? foreach ($mBoard as $row) { ?>
+                <div class="sale">
+                    <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                    <p>
+                        <? if (empty($row['image'])) { ?>
+                            <img src="/images/details.png" alt="<?= $row['title'] ?>"/>
+                        <? } else { ?>
+                            <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/>
+                        <? }  ?>
+                    </p>
+                    <div class="name"><?= $row['name'] ?></div>
+                    <div class="size"><?= $row['param2'] ?></div>
+                    <div class="year"><?= word('Год') ?>: <?= $row['param'] ?></div>
+                    <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                    <div class="type"></div>
+                </div>
+            <? } ?>
+            <div class="empty"></div>
+            <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+        </div>
+    </div>
+<? } ?>

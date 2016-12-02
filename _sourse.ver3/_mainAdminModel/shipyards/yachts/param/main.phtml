@@ -1,0 +1,22 @@
+    <? /*view_menu::viewMenu($menu[0])*/ ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2"><?=$menu[1] ?></td>
+</tr>
+</table>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="4">Параметры яхты</td>
+</tr>
+<?=$main_edit->paramView() ?>
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

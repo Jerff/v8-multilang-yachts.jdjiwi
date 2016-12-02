@@ -1,0 +1,48 @@
+<div id="container" class="yacht-content">
+    <?= cmfMenu::viewSubMenu() ?>
+
+    <? if (!empty($mMenu)) { ?>
+        <div id="navigation-menu">
+            <? if (isset($mMenu['isBoard'])) { ?>
+                <a class="mybutton mybutton-yachts mybutton-yachts-menu" href="<?= $boardAdd ?>"><?= word('Добавить объявление') ?></a>
+            <? } ?>
+            <i class="fa fa-bars"></i>
+            <ul>
+                <? if (!empty($mBMenu)) { ?>
+                    <? foreach ($mBMenu as $row) { ?>
+                        <li <? if (isset($row['sel'])) { ?>class="last"<? } ?>>
+                            <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                        </li>
+                    <? } ?>
+                    <li class="navigation-sep"></li>
+                <? } ?>
+                <?
+                foreach ($mMenu as $row)
+                    if ($row) {
+                        ?>
+                        <li <? if (isset($row['sel'])) { ?>class="last"<? } ?>>
+                            <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                        </li>
+                    <? } ?>
+                <? if (isset($mMenu['isBoard'])) { ?>
+                    <li>
+                        <a class="mybutton mybutton-yachts" href="<?= $boardAdd ?>"><?= word('Добавить объявление') ?></a>
+                    </li>
+                <? } ?>
+            </ul>
+        </div>
+    <? } ?>
+    <? if (isset($h1)) { ?>
+        <? if (!cmfPages::isBlog()) { ?>
+            <div class="gplus" style="float:right"><g:plusone ></g:plusone></div>
+        <? } ?>
+        <h1><?= $h1 ?></h1>
+        <div class="clear"></div>
+    <? } ?>
+    <? if (isset($content)) { ?>
+        <?= $content ?>
+    <? } ?>
+    <div id="wrapper">
+
+        <div id="content">
+

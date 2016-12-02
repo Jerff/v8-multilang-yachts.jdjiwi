@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Каталог">
+	<modul id="arenda" name="Аренда яхт">
+        <menuList>
+            <menu id="charter">
+                <link name="/admin/arenda/info/" menu="Аренда" submenu="Информация"/>
+                <link name="/admin/arenda/info/slider/" submenu="Слайд шоу"/>
+                <link name="/admin/charter/info/" menu="Международный чартер" submenu1="Информация"/>
+                <link1 name="/admin/charter/slider/" submenu="Слайд шоу"/>
+                <link1 name="/admin/charter/yachts/info/" menu="Все яхты, для чартера"/>
+                <link1 name="/admin/charter/yachts/slider/" submenu="Слайд шоу"/>
+                <link name="/admin/request/arenda/" menu="Форма аренды яхт"/>
+    		</menu>
+
+    		<menu id="yachts">
+    			<link name="/admin/arenda/yachts/" menu="Список яхт"/>
+    			<link name="/admin/arenda/yachts/edit/" select="yachts" submenu="Свойства"/>
+    			<link name="/admin/arenda/yachts/param/" select="yachts" submenu="Парметры"/>
+    			<link name="/admin/arenda/yachts/foto/" select="yachts" submenu="Фото"/>
+    			<link name="/admin/arenda/yachts/plan/" select="yachts" submenu="Планы"/>
+    			<link name="/admin/param/arenda/notice/" menu="Характеристики"/>
+    			<link1 name="/admin/param/arenda/search/" menu="Подбор яхт"/>
+    		</menu>
+
+    		<menu id="arenda">
+    			<link name="/admin/arenda/" menu="Аренда яхт"/>
+    			<link name="/admin/arenda/edit/" select="slider" submenu="Информация"/>
+    			<link name="/admin/arenda/edit/slider/" select="slider" submenu="Слайд шоу"/>
+			    <link name="/admin/arenda/type/" menu="Типы яхт"/>
+    			<link name="/admin/arenda/type/edit/"/>
+    		</menu>
+        </menuList>
+		<pages>
+			<page name="/admin/arenda/info/" preg="/(arenda/info)/" path="main/info"/>
+			<page name="/admin/arenda/info/slider/" preg="/(arenda/info)/slider/" path="main/slider/list"/>
+			<page name="/admin/charter/info/" preg="/(charter)/info/" path="main/info"/>
+			<page name="/admin/charter/slider/" preg="/(charter)/slider/" path="main/slider/list"/>
+			<page name="/admin/charter/yachts/info/" preg="/(charter/yachts)/info/" path="main/info"/>
+			<page name="/admin/charter/yachts/slider/" preg="/(charter/yachts)/slider/" path="main/slider/list"/>
+			<page name="/admin/request/arenda/" preg="/(request/arenda)/" path="main/info"/>
+
+			<page name="/admin/arenda/type/" subpath="list"/>
+			<page name="/admin/arenda/type/edit/"/>
+
+			<page name="/admin/arenda/" subpath="list"/>
+			<page name="/admin/arenda/edit/"/>
+			<page name="/admin/arenda/edit/slider/" preg="/(arenda/edit)/slider/" path="main/slider/list"/>
+			<page name="/admin/arenda/yachts/" subpath="list"/>
+			<page name="/admin/arenda/yachts/edit/"/>
+			<page name="/admin/arenda/yachts/param/"/>
+			<page name="/admin/arenda/yachts/foto/" subpath="list"/>
+			<page name="/admin/arenda/yachts/plan/" subpath="list"/>
+		</pages>
+		<rules>
+			<rule id="arenda">
+				<elements>
+					<element>list</element>
+					<element>edit</element>
+					<element>type/list</element>
+					<element>type/edit</element>
+				</elements>
+			</rule>
+			<rule id="arenda.yachts">
+				<elements>
+					<element>yachts/list</element>
+					<element>yachts/edit</element>
+					<element>yachts/edit/arenda</element>
+					<element>yachts/param</element>
+					<element>yachts/foto/list</element>
+					<element>yachts/foto/multi</element>
+					<element>yachts/foto/edit</element>
+					<element>yachts/plan/list</element>
+					<element>yachts/plan/multi</element>
+					<element>yachts/plan/edit</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Каталог">
+	<modul id="shipyards" name="Продажа новых яхт">
+        <menuList>
+    		<menu id="shipyards/search">
+    			<link1 name="/admin/shipyards/search/info/" menu="Подбор яхты"/>
+     			<link name="/admin/shipyards/search/result/" menu="Результаты подбора"/>
+    			<link1 name="/admin/param/shipyards/search/" menu="Парметры подбора"/>
+    		</menu>
+    		<menu id="shipyards/info">
+    			<link1 name="/admin/shipyards/info/" menu="Все верфи мира"/>
+    			<link name="/admin/shipyards/" menu="Список верфей"/>
+    			<link name="/admin/shipyards/edit/"/>
+    		</menu>
+    		<menu id="yachts">
+    			<link name="/admin/shipyards/yachts/" menu="Список яхт"/>
+    			<link name="/admin/shipyards/yachts/edit/" select="yachts" submenu="Свойства"/>
+    			<link name="/admin/shipyards/yachts/param/" select="yachts" submenu="Парметры"/>
+    			<link name="/admin/shipyards/yachts/foto/" select="yachts" submenu="Фото"/>
+    			<link name="/admin/shipyards/yachts/plan/" select="yachts" submenu="Планы"/>
+    			<link name="/admin/param/shipyards/notice/" menu="Характеристики"/>
+    		</menu>
+    		<menu id="sale/new">
+    			<link name="/admin/sale/new/info/" menu="Продажа новых яхт"/>
+     			<link name="/admin/request/sale/info/" menu="Форма запроса продажи яхт"/>
+    		</menu>
+     		<menu id="type">
+    			<link name="/admin/shipyards/type/" menu="Типы яхт"/>
+    			<link name="/admin/shipyards/type/edit/"/>
+    		</menu>
+        </menuList>
+		<pages>
+			<page name="/admin/shipyards/search/info/" preg="/(shipyards/search)/info/" path="main/info"/>
+			<page name="/admin/shipyards/search/result/" preg="/(shipyards/search/result)/" path="main/info"/>
+
+            <page name="/admin/shipyards/type/" subpath="list"/>
+			<page name="/admin/shipyards/type/edit/"/>
+
+			<page name="/admin/sale/new/info/" preg="/(sale/new)/info/" path="main/info"/>
+			<page name="/admin/request/sale/info/" preg="/(request/sale)/info/" path="main/info"/>
+
+			<page name="/admin/shipyards/" subpath="list"/>
+			<page name="/admin/shipyards/edit/"/>
+			<page name="/admin/shipyards/info/" preg="/(shipyards)/info/" path="main/info"/>
+
+			<page name="/admin/shipyards/yachts/" subpath="list"/>
+			<page name="/admin/shipyards/yachts/edit/"/>
+			<page name="/admin/shipyards/yachts/param/"/>
+			<page name="/admin/shipyards/yachts/foto/" subpath="list"/>
+			<page name="/admin/shipyards/yachts/plan/" subpath="list"/>
+		</pages>
+		<rules>
+			<rule id="shipyards">
+				<elements>
+					<element>list</element>
+					<element>edit</element>
+					<element>type/list</element>
+					<element>type/edit</element>
+				</elements>
+			</rule>
+			<rule id="sale">
+				<elements>
+					<element>sale/type/list</element>
+					<element>sale/type/edit</element>
+				</elements>
+			</rule>
+			<rule id="shipyards.yachts">
+				<elements>
+					<element>yachts/list</element>
+					<element>yachts/edit</element>
+					<element>yachts/param</element>
+					<element>yachts/foto/list</element>
+					<element>yachts/foto/multi</element>
+					<element>yachts/foto/edit</element>
+					<element>yachts/plan/list</element>
+					<element>yachts/plan/multi</element>
+					<element>yachts/plan/edit</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

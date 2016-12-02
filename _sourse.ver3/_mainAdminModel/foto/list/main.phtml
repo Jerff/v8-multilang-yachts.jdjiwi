@@ -1,0 +1,77 @@
+<?
+view_command::viewLineMenuButton(
+        $id ? cmfAdminView::buttonType1("cmf.redirect('" . $main_edit->getCatalogUrl() . "');", 'Новая запись') : '', cmfAdminView::buttonType1("edit.postAjax('update');", $id ? 'Сохранить' : 'Добавить'))
+?>
+
+
+<?= $main_edit->htmlStartForm('edit') ?>
+<table class="great_table">
+
+    <tr class="header_col">
+        <td colspan="2"><?= ($id ? 'Информация' : 'Новая запись') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">&nbsp;</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->label('main', 'Вверху списка') ?><?= $form->html('main') ?>
+            <?= $form->label('visible', 'Отображать') ?><?= $form->html('visible') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Изображение:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('name') ?>
+            <?= $langForm->html('name', 'class="width50"') ?>
+            <br /><?= $main_edit->getImage('main', 'image') ?></td>
+    </tr>
+
+    <? if ($main_edit->getId()) { ?>
+        <tr>
+            <td class="svet_td"><span id="previewMain" class="cursor">Показать превью</span></td>
+            <td class="svet_td2">
+                <div id="previewContent" class="cmfHide">
+                    <? view_gallery::preview($main_edit, 'edit', $data) ?>
+                </div>
+                <script language="JavaScript">
+                    cmf.admin.gallery.hideShow('#previewMain', '#previewContent');
+                </script>
+            </td>
+        </tr>
+    <? } ?>
+
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+
+
+<? view_command::viewLimitButton($limitUrl, $linkPage, '') ?>
+
+<?= $main_list->htmlStartForm() ?>
+<?
+foreach ($main_list as $key => $value)
+    if ($key) {
+        list($form, $data) = $value->main;
+        ?>
+        <div id="<?= $main_list->getHtmlIdDel() ?>" class="galleryView galleryViewWidth">
+            <div>
+                <?= $main_list->getHtmlListId(); ?>
+                <div><?= $main_list->getPostMove($data) ?></div>
+                <div><?= cmfAdminView::buttonType3($main_list->getEditUrl(), $data->lang('name')) ?></div>
+                <div style="float:right">
+                    <div><?= $form->html('main', 'onchange="modul.postAjax(\'update\');"') ?></div>
+                    <div><?= $form->html('visible', 'onchange="modul.postAjax(\'update\');"') ?></div>
+                    <div><?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", '<img src="/sourseImage/admin/delete.gif">') ?></div>
+                </div>
+            </div>
+            <div class="empty"></div>
+            <div>
+                <? if ($data->get('image_main')) { ?>
+                    <a href="<?= $data->get('image_main') ?>" class="fancybox img" rel="group"><img id="preview<?= $key ?>" src="<?= $data->get('image_small') ?>?<?= time() ?>" alt="<?= htmlspecialchars($data->get('name')) ?>"></a>
+                    <? } ?>
+            </div>
+        </div>
+    <? } ?>
+<?= $main_list->htmlEndForm() ?>
+
+<? view_command::viewLimitButton($limitUrl, $linkPage, '') ?>

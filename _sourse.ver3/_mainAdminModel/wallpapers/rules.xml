@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="wallpapers" name="Обои">
+		<menu>
+			<link name="/admin/wallpapers/list/" menu="Обои"></link>
+            <!--<link name="/admin/wallpapers/" menu="Информация"/>-->
+		</menu>
+		<pages>
+			<page name="/admin/wallpapers/list/"></page>
+			<!--<page name="/admin/wallpapers/" preg="/(wallpapers)/" path="main/info"/>-->
+		</pages>
+		<rules>
+			<rule id="wallpapers">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

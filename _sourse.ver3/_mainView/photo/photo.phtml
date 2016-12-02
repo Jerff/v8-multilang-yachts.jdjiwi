@@ -1,0 +1,21 @@
+<div class="yachttype yachttype-wallpapers">
+    <ul class="tabs">
+        <li class="current"><span><?= word('Фото яхт') ?></span></li>
+        <li><span><a href="<?= $wallpapersUrl ?>"><?= word('Фото яхт(обои)') ?></a></span></li>
+    </ul>
+    <div class="box visible">
+        <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+        <div class="empty"></div>
+        <? foreach ($mFoto as $row) { ?>
+            <div class="rent wallpapers">
+                <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this);"><img class="wallpapers-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+            </div>
+        <? } ?>
+        <div class="empty"></div>
+        <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+    </div>
+</div>
+<div class="empty"></div>
+<script>
+    cmf.main.slides.init();
+</script>

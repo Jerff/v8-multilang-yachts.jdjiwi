@@ -1,0 +1,39 @@
+<div class="yachttype yachttype-link yachttype-sale">
+    <ul class="tabs">
+        <? foreach ($mType as $id => $row) { ?>
+            <li class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                    <? if (isset($row['sel'])) { ?>
+                        <?= $row['name'] ?>
+                    <? } else { ?>
+                        <a href="<?= $row['url'] ?>"><?= $row['name'] ?></a>
+                    <? } ?>
+                </span>
+                <? if (isset($row['menu'])) { ?>
+                    <br><?= $row['menu'] ?></li>
+            <? } ?>
+        <? } ?>
+    </ul>
+    <!--    <ul class="tabs">
+            <li class="current"><span>Мегаяхты</span><br>от 47 м
+            </li>
+            <li><span>Суперяхты</span><br>от 24 до 47 м
+            </li>
+            <li><span>Моторные яхты</span><br>от 10 до 24 м
+            </li>
+            <li><span>Катера</span><br>до 10 м
+            </li>
+        </ul>-->
+    <div class="box visible">
+        <? foreach ($mYachts as $row) { ?>
+            <div class="sale">
+                <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                <div class="name"><?= $row['name'] ?></div>
+                <div class="size"><?= $row['param2'] ?></div>
+                <div class="year"><?= word('Год') ?>: <?= $row['param'] ?></div>
+                <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                <div class="type"></div>
+            </div>
+        <? } ?>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+    <div class="text_block3">
+
+        <div class="vkladki2">
+        </div>
+
+        <div class="notice"><?=$notice ?></div>
+
+            <div class="podbor">
+            <form action="<?=$resultUrl ?>" method="post">
+            <? foreach($_view as $key=>$row)
+                switch($row['view']) {
+                    case 'range': ?>
+                        <div class="podbor_1">
+                            <p><?=$row['name'] ?> <img src="images/line.png" alt=""  /> от: <input name="paramMin<?=$key ?>" type="text" class="podbor_input1" /> <?=$row['prefix'] ?> <img src="images/line2.png" alt="" /> до: <input name="paramMax<?=$key ?>" type="text" class="podbor_input1" /> <?=$row['prefix'] ?></p>
+                        </div>
+                    <?  break;
+
+                    case 'checkbox': ?>
+                        <div class="podbor_2">
+                            <p><img src="images/line3.png" alt="" /> Ограничить поиск параметром “<?=$row['name'] ?>” <img src="images/line4.png" alt="" /></p>
+                            <p>
+
+                            <? foreach($row['value'] as $k=>$v) { ?>
+                                <span><label><input name="param<?=$key ?>[<?=$k ?>]" type="checkbox" class="podbor_input2" />&nbsp;<?=$v ?></label></span>
+                            <? } ?>
+                            </p>
+                        </div>
+                        <div class="spacer"></div>
+                    <?  break;
+
+                    case 'radio': ?>
+                        <div class="podbor_2">
+                            <p><img src="images/line3.png" alt="" /> Ограничить поиск параметром “<?=$row['name'] ?>” <img src="images/line4.png" alt="" /></p>
+                            <p>
+                                <span><label><input name="param<?=$key ?>" value="-1" type="radio" class="podbor_input2" checked/>&nbsp;Все варианты</label></span>
+                            <? foreach($row['value'] as $k=>$v) { ?>
+                                <span><label><input name="param<?=$key ?>" value="<?=$k ?>" type="radio" class="podbor_input2" />&nbsp;<?=$v ?></label></span>
+                            <? } ?>
+                            </p>
+                        </div>
+                    <?  break;
+                }
+            ?>
+            <button class="zapros2"></button>
+            </form>
+            </div>
+
+        <div class="spacerYachts"></div>
+        <?=$content ?>
+    </div>

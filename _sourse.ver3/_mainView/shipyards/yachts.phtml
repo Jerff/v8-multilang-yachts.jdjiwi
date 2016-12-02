@@ -1,0 +1,80 @@
+<h1><?= $yachts['name'] ?></h1>
+<div class="yachttype yachttype-yacht ">
+    <? /* <ul class="tabs tabsList">
+      <li class="current"><?= word('Описание') ?></li>
+      <li><?= word('Фото') ?></li>
+      <? if (!empty($mPlan)) { ?>
+      <li><?= word('Планы') ?></li>
+      <? } ?>
+      </ul> */ ?>
+    <div class="box box-content visible">
+        <div class="sliderkit-inner">
+            <div class="sliderkit photosgallery-vertical">
+                <div class="sliderkit-nav">
+                    <div class="sliderkit-nav-clip">
+                        <ul>
+                            <? foreach ($mFoto as $row) { ?>
+                                <li><a rel="nofollow" title="<?= $row['title'] ?>"><img src="<?= $row['preview'] ?>" alt="<?= $row['title'] ?>" <?= $row['preview-width'] ?>  /></a></li>
+                            <? } ?>
+                        </ul>
+                    </div>
+                    <div class="sliderkit-btn sliderkit-nav-btn sliderkit-nav-prev"><a rel="nofollow" href="#" title="Previous line"><span>Previous</span></a></div>
+                    <div class="sliderkit-btn sliderkit-nav-btn sliderkit-nav-next"><a rel="nofollow" href="#" title="Next line"><span>Next</span></a></div>
+                </div>
+                <div class="sliderkit-panels">
+                    <div class="sliderkit-btn sliderkit-go-btn sliderkit-go-prev"><a rel="nofollow" href="#" title="Previous"><span>Previous</span></a></div>
+                    <div class="sliderkit-btn sliderkit-go-btn sliderkit-go-next"><a rel="nofollow" href="#" title="Next"><span>Next</span></a></div>
+                    <? foreach ($mFoto as $row) { ?>
+                        <div class="sliderkit-panel">
+                            <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this);"><img src="<?= $row['small'] ?>" alt="<?= $row['title'] ?>" <?= $row['small-width'] ?> /></a>
+                        </div>
+                    <? } ?>
+                </div>
+            </div>
+        </div>
+
+        <? if (0 and ! empty($yachts['image_main'])) { ?>
+            <p><img src="<?= $yachts['image_main'] ?>" alt="<?= $yachts['title'] ?>" <?= $yachts['width'] ?>/></p>
+            <p class="nvl"><a href="<?= $startUrl ?>">&lt;&lt;<?= word('Предыдущая яхта') ?></a>&nbsp;&nbsp;&nbsp;<a href="<?= $endUrl ?>"><?= word('Следующая яхта') ?>&gt;&gt;</a></p>
+        <? } ?>
+        <? if (isset($notice)) { ?>
+            <h3><?= word('Технические характеристики') ?></h3>
+            <div class="yacht-about">
+                <ul class="about">
+                    <? foreach ($notice as $k => $v) { ?>
+                        <li><span class="item"><?= $k ?></span><span><?= $v ?></span></li>
+                    <? } ?>
+                    <li><span class="item"><?= word('Контакты') ?></span> <span class="blue blue-width"><a href="tel:<?= cmfContent::pareseTel($phone2) ?>"><?= $phone2 ?></a></span></li>
+                </ul>
+                <div class="op_price">
+                    <p><?= word('Цена') ?>: <span><?= $yachts['price'] ?></span></p>
+                    <a class="mybutton" href="<?= $saleUrl ?>"><?= word('Купить') ?></a>
+                </div>
+            </div>
+            <div class="empty"></div>
+        <? } ?>
+        <div class="descr">
+            <div class="h1"><?= $shipyards['name'] ?> <?= word('представляют') ?></div>
+            <?= $yachts['notice'] ?>
+        </div>
+    </div>
+    <? /*
+      <div class="box box-content">
+      <? foreach ($mFoto as $row) { ?>
+      <div class="rent yachts">
+      <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this);"><img class="yachts-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+      </div>
+      <? } ?>
+      </div>
+      <div class="box box-content">
+      <? foreach ($mPlan as $row) { ?>
+      <div class="rent yachts">
+      <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this);"><img class="yachts-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+      </div>
+      <? } ?>
+      </div> */ ?>
+</div>
+
+<script type="text/javascript">
+    cmf.main.slides.init();
+</script>

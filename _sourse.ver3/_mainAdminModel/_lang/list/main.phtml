@@ -1,0 +1,70 @@
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить'))
+?>
+
+<?= $main_edit->htmlStartForm('edit') ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td colspan="2">Настройки</td>
+    </tr>
+    <tr>
+        <td class="svet_td">Разделы:</td>
+        <td class="svet_td2">
+            <?
+            foreach ($formSection as $key => $name) {
+                echo $formSection->html($key);
+                echo '<div class="empty"></div>';
+            }
+            ?>
+        </td>
+    </tr>
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+
+<?
+view_command::viewLineMenuButton(
+        cmfAdminView::buttonType1("modul.postAjax('updatePages');", 'Сгенерировать страницы в файл'), cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>
+
+
+<?= $main_list->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td width="22px">#</td>
+        <td width="200px">Название</td>
+        <td width="200px">Адрес</td>
+        <td>Изображение</td>
+        <td width="200px">Изображение в меню сайта</td>
+    <!--//	<td width="22px">Удалить</td>//-->
+    </tr>
+
+    <?
+    foreach ($main_list as $key => $value) {
+        list($form, $data) = $value->main;
+        ?>
+        <?= view_list::startTR($main_list) ?>
+        <?= $main_list->getPostMove($data) ?>
+        <td><?= $form->html('name', 'style="width:90%"') ?></td>
+        <td><?= $form->html('uri', 'style="width:90%"') ?></td>
+        <td><?= $main_list->getImage('main', 'image') ?></td>
+        <td>
+            <?= $main_list->getHtmlListId(); ?>
+            <?= $main_list->getImage('main', 'small') ?>
+        </td>
+    <!--//	<td>
+
+        <?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+        </td>//-->
+    </tr>
+<? } ?>
+</table>
+<?= $main_list->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>

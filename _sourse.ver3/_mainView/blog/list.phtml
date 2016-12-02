@@ -1,0 +1,48 @@
+<?=$networkL?>
+<?
+$i = 0;
+foreach ($_news as $id => $row) {
+    ?>
+    <? $autor = get($_autor, $row['autor']) ?>
+    <div class="item-blog">
+        <? if ($i++) { ?>
+        <h2><a href="<?= $row['url'] ?>"><?= $row['name'] ?></a></h2>
+        <? } else { ?>
+        <h1><a href="<?= $row['url'] ?>"><?= $row['name'] ?></a></h1>
+        <? } ?>
+        <div class="meta-blog">
+            <div class="meta-item"><img src="img/ico-date.png" alt="Дата публикации" title="Дата публикации"><?= $row['date'] ?></div>
+            <div class="meta-item"><a href="<?= $row['url'] ?>" class="count-comment"><img src="img/ico-comments.png" alt="Количество комментариев" title="Количество комментариев"></a> <a href="<?= $row['url'] ?>#disqus_thread" data-disqus-identifier="blog<?=$id ?>" class="count-comment"></a></div>
+            <div class="meta-item"><img src="img/ico-view.png" alt="Количество просмотров" title="Количество просмотров"> <span id="blogView<?=$id ?>"><?= $row['view'] ?></span></div>
+            <div class="meta-blog-right">
+                <div class="meta-item"><img src="img/ico-auther.png" alt="Автор" title="Автор"> <a href="<?= $autor['neturl'] ?>" target="_blank"><?= $autor['name'] ?></a></div>
+            </div>
+        </div>
+        <? if (!empty($row['image'])) { ?>
+            <p><a href="<?= $row['url'] ?>"><img class="blog-list-img" src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>></a></p>
+        <? } ?>
+        <?= $row['notice'] ?>
+        <div class="more-blog"><a href="<?= $row['url'] ?>" class="btn-blog">Подробнее</a></div>
+    </div>
+<? } ?>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'nskyachts'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script type="text/javascript">
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '<?=cmfBaseUrl ?>/controller/blog/view/?action=list&list=<?=  implode(',', array_keys($_news)) ?>&'+ (new Date()).getMilliseconds();
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<? if (isset($mPageUrl)) cmfPagination::view2($mPageUrl) ?>

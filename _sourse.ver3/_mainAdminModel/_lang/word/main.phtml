@@ -1,0 +1,31 @@
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td width="400px">Название</td>
+	<td>English</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+	<td><?=$form->html('name', 'style="width:90%"') ?></td>
+	<td><?=$form->html('en', 'style="width:90%"') ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+	</td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

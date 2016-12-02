@@ -1,0 +1,119 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2">Информация</td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox">
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Адрес:</td>
+<td class="svet_td2"><?=$form->html('uri', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Название:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('name') ?>
+    <?=$langForm->html('name', 'class="width99"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Размеры в меню:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('menu') ?>
+    <?=$langForm->html('menu', 'class="width50"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Информация по верфи <br /><?=$main_edit->viewSiteUrl() ?></td>
+</tr>
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('header') ?>
+    <?=$langForm->html('header', 'class="width99"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Анонс:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('notice') ?>
+    <?=$langForm->html('notice', 200) ?></td>
+</tr>
+<tr>
+<td class="svet_td">Описание:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('content') ?>
+    <?=$langForm->html('content', 400) ?></td>
+</tr>
+<tr>
+<td class="svet_td">title:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('title') ?>
+    <?=$langForm->html('title', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">keywords:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('keywords') ?>
+    <?=$langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">description:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('description') ?>
+    <?=$langForm->html('description', 'class="width99" rows="3"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Информация по продажи новых яхт <br /><?=$main_edit->saleWiewSiteUrl() ?></td>
+</tr>
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('header2') ?>
+    <?=$langForm->html('header2', 'class="width99"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Описание:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('content2') ?>
+    <?=$langForm->html('content2', 400) ?></td>
+</tr>
+<tr>
+<td class="svet_td">title:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('title2') ?>
+    <?=$langForm->html('title2', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">keywords:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('keywords2') ?>
+    <?=$langForm->html('keywords2', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">description:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('description2') ?>
+    <?=$langForm->html('description2', 'class="width99" rows="3"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

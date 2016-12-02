@@ -1,0 +1,48 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+
+<tr class="header_col">
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="svet_td"></td>
+<td class="svet_td2 selectCheckbox">
+<? if($data->register==='no') { ?>
+     <?=cmfAdminView::onclickType1("modul.postAjax('activate');", 'Активировать') ?>
+<? } ?>
+<? if($data->register==='no') { ?><div class="cmfHide"><? } ?>
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?>
+    <?=$form->label('isIp', 'Привязывать сессию к ip') ?><?=$form->html('isIp') ?>
+<? if($data->register==='no') { ?></div><? } ?>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Логин: *</td>
+<td class="svet_td2"><?=$form->html('login', 'class="width50"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Пароль:</td>
+<td class="svet_td2"><?=$form->html('password', 'class="width50"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Подтвердите пароль:</td>
+<td class="svet_td2"><?=$form->html('password2', 'class="width50"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="content" name="Контент">
+		<menu>
+            <link name="/admin/menu/info/" menu="Информация"/>
+            <link name="/admin/menu/info/edit/" select="slider" submenu="Информация"/>
+            <link name="/admin/menu/info/slider/" select="slider" submenu="Слайд шоу"/>
+			<link name="/admin/content/" menu="Контент"/>
+			<link name="/admin/content/edit/" select="slider" submenu="Информация"/>
+			<link name="/admin/content/slider/" select="slider" submenu="Слайд шоу"/>
+			<link name="/admin/content/static/" menu="Статический контент"/>
+			<link name="/admin/content/static/edit/"/>
+		</menu>
+		<pages>
+			<page name="/admin/content/" subpath="list"/>
+			<page name="/admin/content/edit/"/>
+            <page name="/admin/content/slider/" preg="/(content)/slider/" path="main/slider/list"/>
+			<page name="/admin/content/static/" subpath="list"/>
+			<page name="/admin/content/static/edit/"/>
+		</pages>
+		<rules>
+			<rule id="content">
+				<elements>
+					<element>edit</element>
+					<element>lang</element>
+					<element>list</element>
+				</elements>
+				<childs>
+					<child parentId="idC" type="content">comment</child>
+				</childs>
+			</rule>
+			<rule id="content.static">
+				<elements>
+					<element>static/edit</element>
+					<element>static/list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

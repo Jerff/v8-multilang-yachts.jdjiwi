@@ -1,0 +1,103 @@
+
+<table class="great_table">
+    <tr class="header_col">
+        <td colspan="2"><?= $main_edit->viewSiteUrl() ?></td>
+    </tr>
+</table>
+
+<?
+view_command::viewLineMenuButton(
+        $id ? cmfAdminView::buttonType1("cmf.redirect('" . $main_list->getNew2Url() . "');", 'Новая запись') : '', cmfAdminView::buttonType1("edit.postAjax('update');", $id ? 'Сохранить' : 'Добавить'))
+?>
+
+
+<?= $main_edit->htmlStartForm('edit') ?>
+<table class="great_table">
+
+    <tr class="header_col">
+        <td colspan="2"><?= ($id ? 'Информация' : 'Новая запись') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">&nbsp;</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->label('main', 'Вверху списка') ?><?= $form->html('main') ?>
+            <?= $form->label('visible', 'Отображать') ?><?= $form->html('visible') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Ссылка</td>
+        <td class="svet_td2"><?= $form->html('link', 'class="width50"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Изображение:<br />
+            <? if (cmfAdminMenu::getSubMenuId() == 'main') { ?>
+                <?= sliderMainWidth ?> x <?= sliderMainHeight ?>
+            <? } else { ?>
+                <?= sliderWidth ?> x <?= sliderHeight ?>
+            <? } ?>
+        </td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('name') ?>
+            <?= $langForm->html('name', 'class="width50"') ?>
+            <br /><?= $main_edit->getImage('main', 'image') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Анонс:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('notice') ?>
+            <?= $langForm->html('notice', 300) ?></td>
+    </tr>
+
+    <? if (cmfAdminMenu::getSubMenuId() == 'main') { ?>
+        <tr class="header_col">
+            <td colspan="2">Видео</td>
+        </tr>
+        <tr>
+            <td class="svet_td">Ссылка на видео:</td>
+            <td class="svet_td2"><?= $form->html('video', 'class="width99"') ?></td>
+        </tr>
+        <tr>
+            <td class="svet_td">Стили блока:</td>
+            <td class="svet_td2"><?= $form->html('video_style', 'class="width50"') ?></td>
+        </tr>
+        <tr>
+            <td class="svet_td">Превью:</td>
+            <td class="svet_td2"><?= $main_edit->getImage('main', 'video_image') ?></td>
+        </tr>
+    <? } ?>
+
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+
+
+
+<?= $main_list->htmlStartForm() ?>
+<?
+foreach ($main_list as $key => $value)
+    if ($key) {
+        list($form, $data) = $value->main;
+        ?>
+        <div id="<?= $main_list->getHtmlIdDel() ?>" class="galleryView sliderViewWidth">
+            <div class="galleryViewInner">
+                <?= $main_list->getHtmlListId(); ?>
+                <div class="galleryViewPos"><?= $main_list->getPostMove($data) ?></div>
+                <div class="galleryViewName"><?= cmfAdminView::buttonType3($main_list->getEditUrl(), $data->lang('name')) ?></div>
+                <div class="galleryViewValue">
+                    <div><?= $form->html('main', 'onchange="modul.postAjax(\'update\');"') ?></div>
+                    <div><?= $form->html('visible', 'onchange="modul.postAjax(\'update\');"') ?></div>
+                    <div><?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", '<img src="/sourseImage/admin/delete.gif">') ?></div>
+                </div>
+            </div>
+            <div class="empty"></div>
+            <div>
+                <? if ($data->get('image')) { ?>
+                    <a href="<?= $data->get('image') ?>" class="fancybox img" rel="group"><img src="<?= $data->get('image') ?>" class="preview" alt="<?= htmlspecialchars($data->get('name')) ?>"></a>
+                    <? } ?>
+            </div>
+        </div>
+    <? } ?>
+<?= $main_list->htmlEndForm() ?>

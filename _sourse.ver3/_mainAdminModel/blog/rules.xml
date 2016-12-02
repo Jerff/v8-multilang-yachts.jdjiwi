@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="blog" name="Блог">
+		<menu>
+			<link name="/admin/blog/" menu="Блог"/>
+			<link name="/admin/blog/edit/"/>
+			<link name="/admin/blog/autor/" menu="Авторы"/>
+			<link name="/admin/blog/autor/edit/"/>
+		</menu>
+		<pages>
+			<page name="/admin/blog/" subpath="list"></page>
+			<page name="/admin/blog/edit/"></page>
+			<page name="/admin/blog/autor/" subpath="list"></page>
+			<page name="/admin/blog/autor/edit/"></page>
+		</pages>
+		<rules>
+			<rule id="blog">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+					<element>autor/edit</element>
+					<element>autor/list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

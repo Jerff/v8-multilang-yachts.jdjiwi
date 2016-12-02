@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Настройки">
+	<modul id="lang" name="Мультиязычность">
+		<menu>
+			<link name="/admin/lang/" menu="Список языков"/>
+			<link name="/admin/lang/word/" menu="Фразы"/>
+		</menu>
+		<pages>
+			<page name="/admin/lang/" subpath="list"/>
+			<page name="/admin/lang/word/" />
+		</pages>
+		<rules>
+			<rule id="lang.list">
+				<elements>
+					<element>word</element>
+					<element>list</element>
+					<element>list/config</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

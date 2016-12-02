@@ -1,0 +1,6 @@
+            <? foreach($_news as $id=>$row) { ?>
+            <div class="stat_1" id=<?=$id ?>>
+                <p class="stat_p"><a href="<?=$row['url'] ?>"><?=$row['header'] ?></a> <span><?=$row['date'] ?></span></p>
+                <p><?=$row['notice'] ?></p>
+            </div>
+            <? } ?>

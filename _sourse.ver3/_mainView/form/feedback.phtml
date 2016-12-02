@@ -1,0 +1,38 @@
+<div id="feedback">
+    <?= $contact->startForm('', 'Форма обратной связи') ?>
+    <?= $contact->formError() ?>
+    <input name="formid" type="hidden"  value="feedback" />
+    <p class="cmfHide">
+        <?= $form->viewError('login') ?>
+        <label><span style="color: #ff0000;">*</span> <?= word('Фамилия, имя, отчество') ?></label>
+        <?= $form->html('login', 'class=""') ?>
+    </p>
+    <p>
+        <?= $form->viewError('name') ?>
+        <label><span style="color: #ff0000;">*</span> <?= word('Фамилия, имя, отчество') ?></label>
+        <?= $form->html('name', 'class=""') ?>
+    </p>
+    <p>
+        <?= $form->viewError('email') ?>
+        <label for="email" ><span style="color: #ff0000;">*</span> <?= word('Электронная почта') ?></label>
+        <?= $form->html('email', 'class=""') ?>
+    </p>
+    <p>
+        <?= $form->viewError('phone') ?>
+        <label>&nbsp; <?= word('Контактный телефон') ?></label>
+        <?= $form->html('phone', 'class=""') ?>
+    </p>
+    <p>
+        <?= $form->viewError('notice') ?>
+        <label for="comments" ><span style="color: #ff0000;">*</span> <?= word('Текст сообщения') ?></label>
+        <?= $form->html('notice', 'class=""') ?>
+    </p>
+    <div class="empty"></div>
+    <!--        <div class="captcha">
+                <p>Введите код:</p>
+                <p><img src="/manager/includes/veriword.php?rand=7653" alt="Код проверки" />&nbsp;&nbsp;<span class="formwrap_small"><input class="vericodeform" name="vericode" type="text" value="" /></span></p>
+            </div>-->
+    <p><input type="submit"  value="<?= word('Отправить') ?>" /></p>
+    <p class="clear"><span style="font-size: 90%;"><?= word('Поля отмеченные') ?> <span style="color: #ff0000;">* </span><?= word('обязательны для заполнения') ?>.</span></p>
+    <?= $contact->endForm() ?>
+</div>

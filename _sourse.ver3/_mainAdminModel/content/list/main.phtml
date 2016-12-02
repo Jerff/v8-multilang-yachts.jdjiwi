@@ -1,0 +1,42 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td width="22px">#</td>
+	<td colspan="<?=$main_list->getColspan() ?>">Название</td>
+	<td width="220px">Постоянная ссылка</td>
+	<td width="100px">Добавить подраздел</td>
+	<td width="22px">Вид</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+
+	<? view_list_tree::viewTreeLine($key, $data) ?>
+	<?=$main_list->getPostMove($data) ?>
+	<td <?=$main_list->getColspanLine($data) ?>>
+		<?=cmfAdminView::buttonType3($main_list->getEditUrl(), $data->lang('name')) ?>
+	</td>
+
+	<td><?=$main_list->viewListSiteUrl($data) ?></td>
+	<td><?= $data->level<1 ? cmfAdminView::buttonType3($main_list->getAddChildUrl(), 'Добавить') : '' ?> </td>
+	<td><?=$form->html('visible') ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+	</td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

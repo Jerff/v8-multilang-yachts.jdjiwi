@@ -1,0 +1,47 @@
+	<? isset($menu) ? view_menu::viewMenu($menu) : '' ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2"><?=$main_edit->viewSiteUrl() ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox">
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$form->html('name', 'class="width99"') ?>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Столбцов:</td>
+<td class="svet_td2">
+       <?=$form->html('colum', 'class="width25"') ?>
+</tr>
+<?for ($index = 1; $index <= cmfGlobal::get('fieldColum'); $index++) { ?>
+<tr>
+<td class="svet_td">Столбец <?=$index ?>:</td>
+<td class="svet_td2">
+       <?=$form->html('field'.$index, 'class="width50"') ?>
+</tr>
+<? } ?>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

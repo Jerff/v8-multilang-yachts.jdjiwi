@@ -1,0 +1,161 @@
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>
+
+
+<?= $main_edit->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td colspan="2"><?= $main_edit->viewSiteUrl() ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Верфь:</td>
+        <td class="svet_td2">
+            <?= $form->html('shipyards', 'class="width50" onchange="cmf.pages.shipyardsShange();"') ?>
+            <br />
+            <?= $main_edit->langViewTranslate('shipyardsName') ?>
+            <?= $langForm->html('shipyardsName', 'class="width50"') ?>
+            <script language="JavaScript">
+                cmf.pages.shipyardsShange = function() {
+                    if(!parseInt(cmf.getValue('<?= $form->getId('shipyards') ?>'))) {
+                        $('#<?= $form->getId('shipyardsName') ?>').show();
+                    } else {
+                        $('#<?= $form->getId('shipyardsName') ?>').hide();
+                    }
+                }
+                cmf.pages.shipyardsShange();
+            </script>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Аренда:</td>
+        <td class="svet_td2 arendaList">
+            <div id="selectArendaView" class="paddingBottom cursor width25">Редактировать</div>
+            <div id="arendaView"></div>
+            <div id="arendaList" class="cmfHide"><?
+            foreach ($formArenda as $k => $v)
+                echo $formArenda->html($k, 'onchange="cmf.pages.arendaShange();"') . '<br />'
+                ?></div>
+            <script language="JavaScript">
+                cmf.pages.arendaShange = function() {
+                    var str = '';
+                    var sep = '';
+                    $('label', $('#arendaList')).each(function() {
+                        if($('input', this).attr('checked')) {
+                            str += sep + $(this).text();
+                            sep = '<br>';
+                        }
+                    });
+                    $('#arendaView').html(str);
+                }
+                cmf.pages.arendaShange();
+                $('#selectArendaView').click(function() {
+                    if(style.hideShow('#arendaList')) {
+                        $(this).html('Закончить');
+                        $('#arendaView').hide();
+                    } else {
+                        $(this).html('Редактировать');
+                        $('#arendaView').show();
+                    }
+                    cmf.admin.gallery.hide();
+                    cmf.admin.gallery.show();
+                });
+            </script>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Тип яхты:</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->viewError('type') ?>
+            <div class="empty"></div>
+            <?= $form->html('type') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">&nbsp;</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->label('visible', 'Отображать') ?><?= $form->html('visible') ?></td>
+    </tr>
+
+    <tr class="header_col">
+        <td colspan="2">Информация</td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Адрес:</td>
+        <td class="svet_td2"><?= $form->html('uri', 'class="width50"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Название:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('name') ?>
+            <?= $langForm->html('name', 'class="width99"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Описание:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('notice') ?>
+            <?= $langForm->html('notice', 300) ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Цена в час <br />световой день (12) часов<br />сутки <br />неделя:</td>
+        <td class="svet_td2">
+            <?= $form->html('priceHour', 'class="width25"') ?><?= $form->html('currency') ?>
+            <br /><?= $form->html('priceLightDay', 'class="width25"') ?>
+            <br /><?= $form->html('priceDay', 'class="width25"') ?>
+            <br /><?= $form->html('priceWeek', 'class="width25"') ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Изображение:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('image_title') ?>
+            <?= $langForm->html('image_title', 'class="width50"') ?>
+            <br /><?= $main_edit->getImage('main', 'image') ?>
+            <? if ($main_edit->getId()) { ?>
+                <? view_gallery::preview($main_edit, 'modul', $data) ?>
+            <? } ?>
+        </td>
+    </tr>
+
+    <tr class="header_col">
+        <td colspan="2">Seo</td>
+    </tr>
+    <tr>
+        <td class="svet_td">title:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('title') ?>
+            <?= $langForm->html('title', 'class="width99" rows="3"') ?></td>
+    </tr>
+    <tr>
+        <td class="svet_td">keywords:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('keywords') ?>
+            <?= $langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+    </tr>
+    <tr>
+        <td class="svet_td">description:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('description') ?>
+            <?= $langForm->html('description', 'class="width99" rows="3"') ?></td>
+    </tr>
+
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>

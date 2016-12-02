@@ -1,0 +1,90 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2"><?=$main_edit->viewSiteUrl() ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox">
+    <?=$form->label('isHeader', 'Показывать в шапке') ?><?=$form->html('isHeader') ?>
+    <?=$form->label('main', 'Вверху списка') ?><?=$form->html('main') ?>
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Адрес:</td>
+<td class="svet_td2"><?=$form->html('uri', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('name') ?>
+    <?=$langForm->html('name', 'class="width99"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Логотип для меню:</td>
+<td class="svet_td2"><?=$main_edit->getImage('main', 'logo') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Изображение:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('image_title') ?>
+    <?=$langForm->html('image_title', 'class="width50"') ?>
+    <br /><?=$main_edit->getImage('main', 'image') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Флаг:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('land_title') ?>
+    <?=$langForm->html('land_title', 'class="width50"') ?>
+    <br /><?=$main_edit->getImage('main', 'land') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Подробный текст:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('content') ?>
+    <?=$langForm->html('content', 400) ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Seo</td>
+</tr>
+<tr>
+<td class="svet_td">title:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('title') ?>
+    <?=$langForm->html('title', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">keywords:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('keywords') ?>
+    <?=$langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">description:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('description') ?>
+    <?=$langForm->html('description', 'class="width99" rows="3"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

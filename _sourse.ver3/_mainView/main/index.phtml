@@ -1,0 +1,37 @@
+<?= $slider ?>
+
+<div class="shadow_slider"></div>
+<div id="container">
+    <div id="navigation-search">
+        <div id="navigation-main-menu"><?=$mainMenu ?></div>
+        <?= $search ?>
+    </div>
+    <div id="wrapper">
+        <div id="content" class="main-content">
+            <div class="gplus gplus-main" style="float:right"><g:plusone ></g:plusone></div>
+            <i class="fa fa-bars"></i>
+            <div class="main-content-inner"><?= $content ?></div>
+        </div>
+    </div>
+    <div id="navigation">
+        <div class="news">
+            <h5><?= word('Новое в блоге') ?> <i class="fa fa-bars"></i></h5>
+            <div class="news-contents">
+                <? foreach ($_news as $row) { ?>
+                    <div class="short_article">
+                        <h4><a href="<?= $row['url'] ?>"><?= $row['name'] ?></a></h4>
+                        <div class="date"><?= $row['date'] ?></div>
+                        <p><?= $row['notice'] ?>.</p>
+                    </div>
+                <? } ?>
+                <a href="<?= $newsPath ?>" class="details"><?= word('Читать блог') ?></a>
+            </div>
+        </div>
+        <div class="social-networks">
+            <h5><?= word('Социальные сети') ?> <i class="fa fa-bars"></i></h5>
+            <div class="news-contents">
+                <?= $networkR ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="yachttype yachttype-shipyards-yach">
+    <ul class="tabs tabsList">
+        <li class="current"><?= word('Верфь') ?></li>
+        <li><?= word('Модели яхт') ?></li>
+    </ul>
+    <div class="box box-content visible">
+        <div class="verf_">
+            <div class="verf_logo">
+                <img src="<?= $shipyards['image'] ?>" alt="<?= $shipyards['image_title'] ?>" width="200" height="90"  />
+                <p class="text_bold"><?= $shipyards['name'] ?></p>
+            </div>
+            <? if ($shipyards['land']) { ?>
+                <div class="verf_logo verf_right">
+                    <img src="<?= $shipyards['land'] ?>" alt="<?= $shipyards['land_title2'] ?>" width="200" height="90"  />
+                    <p class="text_bold"><?= $shipyards['land_title'] ?></p>
+                </div>
+            <? } ?>
+            <div class="spacer"></div>
+        </div>
+        <div class="descr">
+            <?= $shipyards['content'] ?>
+        </div>
+    </div>
+    <div class="box box-content">
+        <? foreach ($mYachts as $row) { ?>
+            <div class="sale">
+                <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                <div class="name"><?= $row['name'] ?></div>
+                <div class="size"><?= $row['param'] ?></div>
+                <? /*<div class="year"><?= word('Верфь') ?>: <?= $shipyards['name'] ?></div>*/ ?>
+                <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                <div class="type"></div>
+            </div>
+        <? } ?>
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2">Информация</td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox">
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Название:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('name') ?>
+    <?=$langForm->html('name', 'class="width99"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Адрес в соц сетях:</td>
+<td class="svet_td2">
+    <?=$form->html('neturl', 'class="width99"') ?></td>
+</tr>
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

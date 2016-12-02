@@ -1,0 +1,163 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_edit->htmlStartForm('edit') ?>
+<table class="great_table">
+
+<tr class="header_col">
+<td colspan="2">Главная</td>
+</tr>
+<tr>
+<td class="svet_td">Новостей на главной</td>
+<td class="svet_td2"><?=$form->html('mainNewsView', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Яхт на главной</td>
+<td class="svet_td2"><?=$form->html('mainYacthView', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Яхт в правом меню</td>
+<td class="svet_td2"><?=$form->html('rigthYacthView', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Курс USD к EURO</td>
+<td class="svet_td2"><?=$form->html('usdVsEuro', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Курс USD к RUR</td>
+<td class="svet_td2"><?=$form->html('usdVsRur', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Курс USD к UAH</td>
+<td class="svet_td2"><?=$form->html('usdVsUah', 'class="width25"') ?></td>
+</tr>
+
+<? /*
+<tr>
+<td class="svet_td">Статей на главной</td>
+<td class="svet_td2"><?=$form->html('mainArticleView', 'class="width25"') ?></td>
+</tr>*/?>
+
+<tr class="header_col">
+<td colspan="2">Слайды</td>
+</tr>
+<tr>
+<td class="svet_td">Период смены слайдов</td>
+<td class="svet_td2"><?=$form->html('sliderTime', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Новости</td>
+</tr>
+<tr>
+<td class="svet_td">Новостей на страницу</td>
+<td class="svet_td2"><?=$form->html('newsLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Новостей</td>
+<td class="svet_td2"><?=$form->html('newsPages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Блог</td>
+</tr>
+<tr>
+<td class="svet_td">Записей на страницу</td>
+<td class="svet_td2"><?=$form->html('blogLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Блога</td>
+<td class="svet_td2"><?=$form->html('blogPages', 'class="width25"') ?></td>
+</tr>
+<td class="svet_td">Твитануть:</td>
+<td class="svet_td2">
+    <?=$form->html('blogFallover', 'class="width99" rows="5"') ?></td>
+</tr>
+<td class="svet_td">Соц сети:</td>
+<td class="svet_td2">
+    <?=$form->html('blogNetwork', 'class="width99" rows="5"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Доска объявлений</td>
+</tr>
+<tr>
+<td class="svet_td">Объявлений на страницу</td>
+<td class="svet_td2"><?=$form->html('boardLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Объявлений</td>
+<td class="svet_td2"><?=$form->html('boardPages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Статьи</td>
+</tr>
+<tr>
+<td class="svet_td">Статей на страницу</td>
+<td class="svet_td2"><?=$form->html('articleLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Статей</td>
+<td class="svet_td2"><?=$form->html('articlePages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Фото</td>
+</tr>
+<tr>
+<td class="svet_td">Фото на страницу</td>
+<td class="svet_td2"><?=$form->html('photoLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Фото</td>
+<td class="svet_td2"><?=$form->html('photoPages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Обои</td>
+</tr>
+<tr>
+<td class="svet_td">Обой на страницу</td>
+<td class="svet_td2"><?=$form->html('wallpapersLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Обой</td>
+<td class="svet_td2"><?=$form->html('wallpapersPages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Отзывы</td>
+</tr>
+<tr>
+<td class="svet_td">Отзывов на страницу</td>
+<td class="svet_td2"><?=$form->html('reviewsLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Отзывов</td>
+<td class="svet_td2"><?=$form->html('reviewsPages', 'class="width25"') ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Подбор яхт</td>
+</tr>
+<tr>
+<td class="svet_td">Яхт на страницу</td>
+<td class="svet_td2"><?=$form->html('searchYachtsLimit', 'class="width25"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Страниц на странице Яхт</td>
+<td class="svet_td2"><?=$form->html('searchYachtsPages', 'class="width25"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить')) ?>

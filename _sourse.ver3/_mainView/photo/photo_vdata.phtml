@@ -1,0 +1,5 @@
+<? foreach ($_foto as $row) { ?>
+    <div class="wallpapers">
+        <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this)"><img class="wallpapers-img" src="<?= cmfImage::preview($row['main'], 170, 97) ?>"  alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+    </div>
+<? } ?>

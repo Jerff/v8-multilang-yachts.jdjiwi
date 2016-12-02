@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php $metas = cmfHeader::getTitleMeta(); ?>
+        <?= $metas ?>
+        <?= cmfHeader::getHead() ?>
+        <?= cmfHeader::getRobots() ?>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+            {
+                lang: 'ru'
+            }
+        </script>
+      <!--[if IE]><script type="text/javascript" src="/js/videoslider/js/excanvas.compiled.js"></script><![endif]-->
+        <? echo str_replace('<meta name="robots" content="index,follow" />', '', $head); ?>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+        <meta content="telephone=no" name="format-detection" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $rssUrl ?>" />
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/assets/templates/nsk/css/ie7.css" /><![endif]-->
+        <? include(cmfView . 'header.head.phtml'); ?>
+        <? //$headCounters  ?>
+        <?= cmfHeader::getCustomHead() ?>
+    </head>
+    <body id="<?= $body ?>" class="main-<?=cmfPart ?>">
+        <script type="text/javascript">
+            var sliderTime = <?= $sliderTime ?>;
+        </script>
+        <?= $headerCounters ?>
+        <?= $networkL ?>
+        <div id="header">
+            <div class="wrap">
+                <div class="main_menu nav-container">
+                    <a href="<?= $index ?>"><img src="/images/logo.png" alt="" /></a>
+                    <div class="phone">
+                        <p><?= word('Контактный телефон') ?></p>
+                        <![if ! lte IE 8]><select id="city_list" name="type" onchange="shangePhone(this);">
+                            <? foreach ($phone as $row) { ?>
+                                <option <? if (isset($row['sel'])) { ?>selected="selected"<? } ?> value="<?= $row['tel'] ?>||<?= $row['phone'] ?>"><?= $row['name'] ?></option>
+                            <? } ?>
+                        </select><![endif]>
+                        <!--[if lte IE 8]>
+                        <select id="city_list" name="type" onchange="shangePhone(this);">
+                        <? foreach ($phone as $row) { ?>
+                                                                <option <? if (isset($row['sel'])) { ?>selected="selected"<? } ?> value="<?= $row['tel'] ?>||<?= $row['phone'] ?>"><?= $row['name'] ?></option>
+                        <? } ?>
+                        </select>
+                        <![endif]-->
+                        <div class="number cmfHide">
+                            <p id="phone-str"><a href="tel:<?=$phoneNumber['tel'] ?>"><?php
+                                $str = $phoneNumber['phone'];
+                                echo $str;
+                                ?></a></p>
+                        </div>
+                        <a class="mybutton" href="<?= cmfMenu::requestUrl() ?>"><?= word('Сделать запрос на подбор яхты') ?></a>
+                    </div>
+                    <div class="lang">
+                        <? foreach ($mLang as $row) { ?>
+                            <a style="background: url(<?= $row['image'] ?>) no-repeat left;" href="<?= $row['url'] ?>" class="<?= $row['uri'] ?> <? if (isset($row['sel'])) { ?>selectedLang<? } ?>"><?= $row['name'] ?></a>
+                        <? } ?>
+                    </div>
+                    <div class="ajaxsearch">
+                        <? if ($isMain and 0) { ?>
+                            <div class="gplus"><g:plusone></g:plusone></div>
+                        <? } ?>
+                        <form id="ajaxSearch_form" action="<?= $searchUrl ?>" method="post">
+                            <fieldset>
+                                <input type="hidden" name="advsearch" value="oneword" />
+                                <label>
+                                    <input data-default="<?= $searchDefault ?>" id="ajaxSearch_input" class="cleardefault" type="text" name="searchName" value="<?= $searchName ?>"/>
+                                </label>
+                                <label>
+                                    <input id="ajaxSearch_submit" type="submit" name="sub" value="ОК" />
+                                </label>
+                            </fieldset>
+                        </form>
+                        <div class="AS_ajax_resultsIntroFailure">
+                        </div>
+                    </div>
+                    <i class="fa fa-bars"></i>
+                    <div class="dropdown <?= $menuId ?>">
+                        <ul>
+                            <? foreach ($mMenu as $row) { ?>
+                                <li class="<?= $row['class'] ?> <? if (isset($row['sel'])) { ?>active<? } ?>">
+                                    <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                                    <? if (!empty($row['childs'])) { ?>
+                                        <ul>
+                                            <li class="li-section"><a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a></li>
+                                            <? foreach ($row['childs'] as $row) { ?>
+                                                <li class="<? if (isset($row['sel'])) { ?>active<? } ?>"><a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a></li>
+                                            <? } ?>
+                                        </ul>
+                                    <? } ?>
+                                </li>
+                            <? } ?>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>

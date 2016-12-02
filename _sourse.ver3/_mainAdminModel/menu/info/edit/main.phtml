@@ -1,0 +1,109 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2"><?=$main_edit->viewSiteUrl() ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox">
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Каталог:</td>
+<td class="svet_td2"><?=$form->html('parent', 'class="width50"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Адрес:</td>
+<td class="svet_td2"><?=$form->html('uri', 'class="width25"') ?><?=$form->html('url', 'class="width25"') ?>
+    <?=$form->label('isUrl', 'Использовать абсолютный адресс') ?><?=$form->html('isUrl', 'onchange="cmf.pages.isUrl();"') ?>
+
+<script language="JavaScript">
+cmf.pages.isUrl = function() {
+    if(cmf.isChecked('<?=$form->getId('isUrl') ?>')) {
+        $('#<?=$form->getId('url') ?>').show();
+        $('#<?=$form->getId('uri') ?>').hide();
+    } else {
+        $('#<?=$form->getId('uri') ?>').show();
+        $('#<?=$form->getId('url') ?>').hide();
+    }
+}
+cmf.pages.isUrl();
+</script>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('name') ?>
+    <?=$langForm->html('name', 'class="width99"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Ссылка на подбор ведет на:</td>
+<td class="svet_td2"><?=$form->html('request', 'class="width25"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Тип страницы:</td>
+<td class="svet_td2"><?=$form->html('pages', 'class="width99"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Название в меню:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('menu') ?>
+    <?=$langForm->html('menu', 'class="width99"') ?></td>
+</tr>
+
+<!--//<tr>
+<td class="svet_td">Изображение:</td>
+<td class="svet_td2"><?=$main_edit->getImage('main', 'image') ?></td>
+</tr>//-->
+
+<tr>
+<td class="svet_td">Описание:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('content') ?>
+    <?=$langForm->html('content', 400) ?></td>
+</tr>
+
+<tr class="header_col">
+<td colspan="2">Seo</td>
+</tr>
+<tr>
+<td class="svet_td">title:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('title') ?>
+    <?=$langForm->html('title', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">keywords:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('keywords') ?>
+    <?=$langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">description:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('description') ?>
+    <?=$langForm->html('description', 'class="width99" rows="3"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

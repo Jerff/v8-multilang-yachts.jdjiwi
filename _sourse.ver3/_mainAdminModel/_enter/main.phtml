@@ -1,0 +1,38 @@
+<script language="JavaScript">
+isNotStart = true;
+</script>
+
+<div>
+<script type="text/javascript" src="<?=cmfBaseUrl ?>/sourseJs/admin/loadBrowser.js"></script>
+<noscript>
+<b>Системе обязательна поддержка javascript, включите ee и обновите страницу</b>
+</noscript>
+<br /><br />
+<h2>&nbsp;&nbsp;&nbsp;Доступ закрыт</h2>
+
+<?=$enter->htmlStartForm() ?>
+<table width="30%">
+<tr>
+<td>
+	<input name="oldAjaxUrl" type="hidden" value="<?=$ajaxUrl ?>" />
+	<table class="great_table">
+	<tr class="header_col">
+	<td>Логин:</td>
+	<td><?=$form->html('loginMain', 'width="100px"') ?></td>
+	</tr>
+
+	<tr class="header_col">
+	<td>Пароль:</td>
+	<td><?=$form->html('passwordMain', 'width="100px"') ?></td>
+	</tr>
+
+	<tr class="header_col">
+	<td width="100px">&nbsp;</td>
+	<td width="150px"><input type="submit" value="Войти в систему" /></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+<?=$enter->htmlEndForm() ?>
+</div>

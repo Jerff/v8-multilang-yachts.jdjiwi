@@ -1,0 +1,27 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<? /*
+<tr>
+<td class="svet_td">Контакты:</td>
+<td class="svet_td2"><?=$form->html('adress', 'class="width99" rows="10"') ?></td>
+</tr>*/ ?>
+
+<tr>
+<td class="svet_td">Копирайт:</td>
+<td class="svet_td2"><?=$form->html('content', 'class="width99" rows="5"') ?></td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

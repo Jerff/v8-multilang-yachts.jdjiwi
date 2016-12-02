@@ -1,0 +1,112 @@
+<? if ($type == 'arenda') { ?>
+
+    <? if (isset($mType)) { ?>
+        <div class="yachttype yachttype-sale">
+            <ul class="tabs tabsList">
+                <? foreach ($mType as $id => $row) { ?>
+                    <li class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                            <?= $row['name'] ?>
+                        </span>
+                    <? } ?>
+            </ul>
+            <? foreach ($mType as $typeId => $type) { ?>
+                <div class="box <? if (isset($type['sel'])) { ?>visible<? } ?>" <? if (isset($type['scroll'])) { ?> id="scroll_vertical1"<? } ?>>
+                    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+                    <div class="empty"></div>
+                    <?
+                    if (isset($mYachtsList[$typeId]))
+                        foreach ($mYachtsList[$typeId] as $id) {
+                            $row = $mYachts[$id];
+                            ?>
+                            <div class="rent rent-arenda1">
+                                <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                                <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                                <div class="name"><?= $row['name'] ?></div>
+                                <div class="size"><?= $row['param1'] ?></div>
+                                <? if (!empty($row['param2'])) { ?>
+                                    <div class="region"><?= $row['param2'] ?></div>
+                                <? } ?>
+                                <div class="type"></div>
+                                <!--<div class="arendaPrice">Стоимость <br>аренды:</div>-->
+                                <div class="price"><?= word('Цена за час') ?>: <?= $row['priceHour'] ?></div>
+                                <? /*
+                                  <div class="price">
+                                  <?= word('час') ?>: <?= $row['priceHour'] ?>
+                                  <br><?= word('12 часов') ?>: <?= $row['priceLightDay'] ?>
+                                  <br><?= word('сутки') ?>: <?= $row['priceDay'] ?>
+                                  <br><?= word('неделя') ?>: <?= $row['priceWeek'] ?>
+                                  </div> */ ?>
+                            </div>
+                        <? } ?>
+                    <div class="empty"></div>
+                    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+                </div>
+            <? } ?>
+        </div>
+    <? } else { ?>
+        <br />
+        <h2 class="listYachts"><?= word('По заданным критериям ничего не найдено') ?></h2>
+    <? } ?>
+
+<? } else { ?>
+
+    <? if (isset($mType)) { ?>
+        <div class="yachttype yachttype-sale">
+            <ul class="tabs tabsList">
+                <? foreach ($mType as $id => $row) { ?>
+                    <li class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                            <?= $row['name'] ?>
+                        </span>
+                        <? if (isset($row['menu'])) { ?>
+                            <br><?= $row['menu'] ?></li>
+                    <? } ?>
+                <? } ?>
+            </ul>
+            <? foreach ($mType as $typeId => $type) { ?>
+                <div class="box <? if (isset($type['sel'])) { ?>visible<? } ?>">
+                    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+                    <div class="empty"></div>
+                    <?
+                    if (isset($typeList['shipyards'][$typeId])) {
+                        foreach ($typeList['shipyards'][$typeId] as $id) {
+                            $row = $mSYachts[$id];
+                            ?>
+                            <div class="sale">
+                                <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                                <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                                <div class="name"><?= $row['name'] ?></div>
+                                <div class="size"><?= $row['param'] ?></div>
+                                <div class="year"><?= word('Верфь') ?>: <?= $row['shipyards'] ?></div>
+                                <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                                <div class="type"></div>
+                            </div>
+                            <?
+                        }
+                    } elseif ($typeList['brokerage'][$typeId]) {
+                        foreach ($typeList['brokerage'][$typeId] as $id) {
+                            $row = $mBYachts[$id]
+                            ?>
+                            <div class="sale">
+                                <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                                <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                                <div class="name"><?= $row['name'] ?></div>
+                                <!--<div class="size">40 м</div>-->
+                                <div class="year"><?= word('Год') ?>: <?= $row['param'] ?></div>
+                                <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                                <div class="type"></div>
+                            </div>
+                            <?
+                        }
+                    }
+                    ?>
+                    <div class="empty"></div>
+                    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+                </div>
+            <? } ?>
+        </div>
+    <? } else { ?>
+        <br />
+        <h2 class="listYachts"><?= word('По заданным критериям ничего не найдено') ?></h2>
+    <? } ?>
+
+<? } ?>

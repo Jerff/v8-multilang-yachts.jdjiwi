@@ -1,0 +1,76 @@
+AddDefaultCharset utf-8
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^(www\.)?nskyachts\.com\.ua$ [NC]
+#RewriteCond %{REQUEST_URI} !^(/robots.txt.*)
+RewriteCond %{REQUEST_URI} !^(/library/.*)
+RewriteCond %{REQUEST_URI} !^(/generator/.*)
+RewriteRule ^(.*)$ http://nsk-yachts.com.ua/$1 [L,R=301]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_URI} !(.*)/$
+#RewriteRule ^(.*)$ http://nsk-yachts.com.ua/$1/ [L,R=301]
+Redirect 301 /blog/ http://blog.nsk-yachts.com.ua/
+
+#php_value register_globals Off
+#php_value magic_quotes_gpc Off
+#php_value magic_quotes_runtime Off
+
+RewriteRule ^.*data.xml$ index.php [L]
+
+RewriteCond %{THE_REQUEST} /index\.php
+RewriteRule ^index.php$ http://%{HTTP_HOST}/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www\.nsk-yachts\.com\.ua$ [NC]
+RewriteCond %{REQUEST_URI} !^/robots\.txt$
+RewriteRule ^(.*)$ http://nsk-yachts.com.ua/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/brokerage
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/brokerage/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/sale_new\/katera
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/sale_new/katera/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/sale_new\/superyachty
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/sale_new/superyachty/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/sale_new\/megayachty
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/sale_new/megayachty/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/shipyard\/diano
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/shipyard/diano/? [R=301,L]
+
+RewriteCond %{REQUEST_URI} \/sale_new\/motoryachty
+RewriteCond %{REQUEST_URI} !\/$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/sale_new/motoryachty/? [R=301,L]
+
+#AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+#<FilesMatch "\.(jpg|jpeg|png|gif|js|css)$">
+#Header set Cache-Control "public"
+#Header set Expires "Thu, 21 May 2025 20:00:00 GMT"
+#</FilesMatch>
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+  ExpiresByType image/png "access plus 3 day"
+  ExpiresByType text/css "access plus 3 day"
+  ExpiresByType application/javascript "access plus 3 day"
+</IfModule>
+
+RewriteCond %{REQUEST_URI} !^/images/tiny
+RewriteCond %{REQUEST_URI} !^/upload
+RewriteCond %{REQUEST_URI} !^/ai-bolit.php
+RewriteCond %{REQUEST_URI} !^/phpinfo.php
+RewriteCond %{REQUEST_URI} !^/googlef65d431e055b3a36.html
+RewriteCond %{REQUEST_URI} !/library
+RewriteCond %{REQUEST_URI} !^/(admin|library|controller|_cache)
+RewriteCond %{REQUEST_URI} !\.(eot|woff|woff2|otf|svg|ttf|cur|7z|aiff|asf|avi|bmp|csv|doc|fla|flv|gif|gz|gzip|jpeg|jpg|JPG|mid|mov|mp3|mp4|mpc|mpeg|mpg|ods|odt|pdf|png|ppt|pxd|qt|ram|rar|rm|rmi|rmvb|rtf|sdc|sitd|swf|sxc|sxw|tar|tgz|tif|tiff|txt|vsd|wav|wma|wmv|xls|xml|zip|js|css|ico)
+
+
+RewriteRule ^.*$ index.php [L]

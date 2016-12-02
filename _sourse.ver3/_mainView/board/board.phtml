@@ -1,0 +1,73 @@
+<? if (isset($isModer)) { ?>
+    <h1><?= word('Объявление не опубликовано') ?></h1>
+    <?= $content ?>
+
+<? } else { ?>
+
+    <? if (!empty($board['status'])) { ?>
+        <div class="board-status"><?= $board['status'] ?></div>
+    <? } ?>
+    <h1><?= $board['name'] ?></h1>
+
+    <div class="yachttype yachttype-yacht">
+        <ul class="tabs tabsList">
+            <li class="current"><?= word('Описание') ?></li>
+            <? if (!empty($mFoto)) { ?>
+                <li><?= word('Фото') ?></li>
+            <? } ?>
+        </ul>
+        <div class="box visible">
+            <? if (!empty($content)) { ?>
+                <?= $content ?>
+            <? } ?>
+            <div class="board board-yacht-about">
+                <? if (!empty($board['image'])) { ?>
+                    <p><img src="<?= $board['image'] ?>" alt="<?= $board['title'] ?>" <?= $board['width'] ?>/></p>
+                <? } ?>
+                <? /* if (!empty($board['phone'])) { ?>
+                  <p><b><?= word('Номер телефона ') ?>:</b> <?= nl2br($board['phone']) ?></p>
+                  <? } */ ?>
+                <? if (!empty($board['contact']) and 0) { ?>
+                    <p><b><?= word('Контакты') ?>:</b> <?= nl2br($board['contact']) ?></p>
+                <? } ?>
+                <h3><?= word('Технические характеристики') ?></h3>
+                <div class="yacht-about yacht-about-board">
+                    <ul class="about">
+                        <? foreach ($notice as $k => $v) { ?>
+                            <li><span class="item"><?= $k ?></span><span><?= $v ?></span></li>
+                        <? } ?>
+                        <? if (!empty($board['contact'])) { ?>
+                            <li><span class="item"><?= word('Контакты') ?></span>
+                                <span class="blue blue-width">
+                                    <? foreach ($board['contact'] as $key=>$value) { ?>
+                                        <? if($key) { ?><br><? } ?>
+                                        <a href="tel:<?= cmfContent::pareseTel($value) ?>"><?= $value ?></a>
+                                    <? } ?>
+                                </span>
+                            </li>
+                        <? } ?>
+                    </ul>
+                    <div class="op_price-arenda">
+                        <p class="op_price-header"><?= word('Цена') ?></p>
+                        <p><span class="bl"><?= $board['price'] ?></span></p>
+                    </div>
+                </div>
+                <div class="empty"></div>
+                <p><?= $board['notice'] ?></p>
+            </div>
+            <div class="empty"></div>
+        </div>
+        <? if (!empty($mFoto)) { ?>
+            <div class="box">
+                <? foreach ($mFoto as $row) { ?>
+                    <div class="rent yachts">
+                        <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this);"><img class="yachts-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+                    </div>
+                <? } ?>
+            </div>
+        <? } ?>
+    </div>
+    <script>
+        cmf.main.slides.init();
+    </script>
+<? } ?>

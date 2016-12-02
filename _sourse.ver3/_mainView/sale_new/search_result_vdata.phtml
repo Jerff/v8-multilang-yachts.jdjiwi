@@ -1,0 +1,18 @@
+        <? foreach($_yachts as $list) { ?>
+             <? $i = 0; foreach($list as $row) { ?>
+             <div class="block_yachts_2 <?= $i++==2 ? 'last_yacht' : '' ?>">
+                <a href="<?=$row['url'] ?>" class="yacht_img">
+                    <span class="rec_more">&nbsp;</span>
+                    <img src="<?=$row['image'] ?>" alt="<?=$row['title'] ?>" title='<?=$row['title'] ?>'/>
+                </a>
+                <p class="yacht_size2"><?=$row['param'] ?></p>
+                <p class="yacht_vm">Верфь: <span class="yacht_m"><?=$row['shipyards'] ?></span></p>
+                <p class="yacht_vm">Модель: <span class="yacht_m"><?=$row['name'] ?></span></p>
+                <p class="line2"></p>
+                   <p class="rec_danie2">Цена: <span><?=$row['price'] ?></span></p>
+                <a href="<?=$row['url'] ?>" class="broker_link2">подробнее &raquo;</a>
+                <p class="yachts_phone"><?=$phone1 ?> <span><?=$phone2 ?></span></p>
+             </div>
+             <? } ?>
+             <div class="spacer"></div>
+        <? } ?>

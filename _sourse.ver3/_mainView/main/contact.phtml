@@ -1,0 +1,36 @@
+    <div class="text_block3">
+        <div class="vkladki2"></div>
+        <?=$info['content'] ?>
+
+        <div class="form_prodaja f_contacts">
+        <p class="p1">Отправить сообщение</p>
+        <?=$contact->startForm('class="prodaja"','contact') ?>
+        <?=$contact->formError() ?>
+            <ol>
+                    <li class="cmfHide">
+                      <label for="">Логин:
+                      <br /><?=$form->viewError('login') ?></label>
+                      <?=$form->html('login', 'class="i_text"') ?>
+                    </li>
+                    <li id="li_first">
+                      <label for="">Имя:
+                      <br /><?=$form->viewError('name') ?></label>
+                      <?=$form->html('name', 'class="i_text"') ?>
+                    </li>
+                    <li>
+                      <label for="">E-mail:
+                      <br /><?=$form->viewError('email') ?></label>
+                      <?=$form->html('email', 'class="i_text"') ?>
+                    </li>
+                    <li style="border-bottom:none;">
+                      <label for="">Сообщение:
+                      <br /><?=$form->viewError('notice') ?></label>
+                      <?=$form->html('notice', 'class="textarea_cont"') ?>
+                      <button class="p_send_cont"></button>
+                      <div class="spacer"></div>
+                    </li>
+            </ol>
+       <?=$contact->endForm() ?>
+       </div>
+
+    </div>

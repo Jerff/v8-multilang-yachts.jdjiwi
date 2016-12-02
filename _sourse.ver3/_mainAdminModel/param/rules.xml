@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Каталог">
+	<modul id="yachts.param" name="Параметры яхт">
+		<menu>
+			<link name="/admin/param/" menu="Параметры яхт"/>
+			<link name="/admin/param/edit/"/>
+		</menu>
+		<pages>
+			<page name="/admin/param/" subpath="list"/>
+			<page name="/admin/param/edit/"/>
+			<page name="/admin/param/shipyards/notice/" preg="/param/(shipyards)/notice/" path="param/group/notice"/>
+			<page name="/admin/param/shipyards/search/" preg="/param/(shipyards)/search/" path="param/group/search"/>
+			<page name="/admin/param/brokerage/notice/" preg="/param/(brokerage)/notice/" path="param/group/notice"/>
+			<page name="/admin/param/brokerage/search/" preg="/param/(brokerage)/search/" path="param/group/search"/>
+			<page name="/admin/param/board/notice/" preg="/param/(board)/notice/" path="param/group/notice"/>
+			<page name="/admin/param/arenda/notice/" preg="/param/(arenda)/notice/" path="param/group/notice"/>
+			<page name="/admin/param/arenda/search/" preg="/param/(arenda)/search/" path="param/group/search"/>
+		</pages>
+		<rules>
+			<rule id="yachts.param">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+					<element>group/search</element>
+					<element>group/notice</element>
+					<element>group/notice/view</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

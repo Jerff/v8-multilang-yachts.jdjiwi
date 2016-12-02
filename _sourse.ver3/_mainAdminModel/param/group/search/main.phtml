@@ -1,0 +1,35 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td width="22px">#</td>
+	<td>Параметр</td>
+	<td width="250px">Вид</td>
+	<td width="22px">Вид</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+	<?=$main_list->getPostMove($data) ?>
+	<td><?=$form->html('param', 'class="width50"') ?></td>
+	<td><?=$form->html('view', 'class="width99"') ?></td>
+	<td><?=$form->html('visible') ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+	</td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

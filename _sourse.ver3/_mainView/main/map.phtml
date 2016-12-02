@@ -1,0 +1,32 @@
+<? foreach ($map[0] as $k => $v) { ?>
+    <h2 class="map">
+        <? if (isset($v['url'])) { ?>
+            <a href="<?= $v['url'] ?>"><b><?= $v['name'] ?></b></a>
+        <? } else { ?>
+            <a><b><?= $v['name'] ?></b></a>
+        <? } ?>
+    </h2>
+    <div class="map">
+        <? if (isset($map[$k])) {
+            foreach ($map[$k] as $v2)
+                if ($v2) { ?>
+                    <? if (isset($v2['third'])) { ?>
+                        <h3><a href="<?= $v2['url'] ?>"><b><?= $v2['name'] ?></b></a></h3>
+                        <!--<div class="spacer"></div>-->
+                        <? foreach ($v2['third'] as $v3)
+                            if ($v3) { ?>
+                                <div><a href="<?= $v3['url'] ?>"><?= $v3['name'] ?></a></div>
+                            <? } ?>
+                        <div class="spacer"></div>
+                    <? } else { ?>
+                        <div><a href="<?= $v2['url'] ?>"><?= $v2['name'] ?></a></div>
+                    <? }
+                } else { ?>
+                    <div class="spacer"></div>
+            <? } ?>
+    <? } ?>
+    </div>
+    <div class="spacer"></div>
+    <br />
+<?
+}

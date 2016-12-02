@@ -1,0 +1,26 @@
+<div class="yachttype yachttype-link yachttype-shipyards">
+    <ul class="tabs">
+        <? foreach ($mType as $id => $row) { ?>
+            <li class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                    <? if (isset($row['sel'])) { ?>
+                        <?= $row['name'] ?>
+                    <? } else { ?>
+                        <a href="<?= $row['url'] ?>"><?= $row['name'] ?></a>
+                    <? } ?>
+                </span>
+                <? if (isset($row['menu'])) { ?>
+                    <br><?= $row['menu'] ?></li>
+            <? } ?>
+        <? } ?>
+    </ul>
+    <div class="box box-content visible">
+        <? foreach ($mShipyards as $row) { ?>
+            <div class="rent shipyards">
+                <a href="<?= $row['url'] ?>">
+                    <img src="<?= $row['image'] ?>" <?= $row['width'] ?> class="shipyards-img" alt="<?= $row['title'] ?>"/>
+                    <p><?= $row['name'] ?></p>
+                </a>
+            </div>
+        <? } ?>
+    </div>
+</div>

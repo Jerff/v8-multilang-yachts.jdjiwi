@@ -1,0 +1,45 @@
+<div class="yachttype yachttype-link yachttype-sale">
+    <ul class="tabs tabsList">
+        <? foreach ($mType as $typeId => $row) { ?>
+            <li id="type-<?= $typeId ?>" class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                    <? if (isset($row['sel'])) { ?>
+                        <?= $row['name'] ?>
+                    <? } else { ?>
+                                                    <!--<a href="<?= $row['url'] ?>"><?= $row['name'] ?></a>-->
+                        <?= $row['name'] ?>
+                    <? } ?>
+                </span>
+                <? if (isset($row['menu'])) { ?>
+                    <br><?= $row['menu'] ?></li>
+            <? } ?>
+        <? } ?>
+    </ul>
+    <? foreach ($mType as $typeId => $typeRow) { ?>
+        <div class="box <? if ($typeId === 'all') { ?>visible<? } ?>">
+            <? if (!empty($mYachts[$typeId])) foreach ($mYachts[$typeId] as $row) { ?>
+                    <div class="sale">
+                        <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                        <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                        <div class="name"><?= $row['name'] ?></div>
+                        <div class="size"><?= $row['param2'] ?></div>
+                        <div class="year"><?= word('Год') ?>: <?= $row['param'] ?></div>
+                        <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                        <div class="type"></div>
+                    </div>
+                <? } ?>
+        </div>
+    <? } ?>
+</div>
+<? foreach ($mType as $typeId => $typeRow) { ?>
+    <div class="cmfHide type-<?= $typeId ?>">
+        <?= $typeRow['content'] ?>
+    </div>
+<? } ?>
+<script>
+    $(document).ready(function() {
+        $('.type-all').html($('#content').html());
+        $('.yachttype-sale .tabsList li').click(function() {
+            $('#content').html($('.' + $(this).attr('id')).html());
+        });
+    });
+</script>

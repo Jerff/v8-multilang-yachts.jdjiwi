@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="menu" name="Меню, Информация">
+		<menuList>
+			<menu id="menu">
+				<link name="/admin/menu/" menu="Верхнее меню"/>
+				<link name="/admin/menu/footer/" menu="Нижнее меню"/>
+				<link name="/admin/menu/pages/" menu="Типы страниц"/>
+				<link name="/admin/menu/rigth/" menu="Правое меню"/>
+				<link1 name="/admin/menu/arenda/" menu="Аренда"/>
+				<link1 name="/admin/menu/sale/" menu="Продажа"/>
+				<link1 name="/admin/menu/useful/" menu="Полезное"/>
+			</menu>
+			<menu1 id="menu.info">
+				<link1 name="/admin/menu/info/" menu="Информация"/>
+				<link1 name="/admin/menu/info/edit/" select="slider" submenu="Информация"/>
+				<link1 name="/admin/menu/info/slider/" select="slider" submenu="Слайд шоу"/>
+			</menu1>
+			<menu id="menu.faq">
+				<link name="/admin/menu/faq/" menu="FAQ"/>
+				<link name="/admin/menu/faq/edit/"/>
+			</menu>
+		</menuList>
+		<pages>
+			<page name="/admin/menu/" subpath="list"/>
+			<page name="/admin/menu/footer/"/>
+			<page name="/admin/menu/rigth/"/>
+			<page name="/admin/menu/pages/"/>
+			<page name="/admin/menu/arenda/"/>
+			<page name="/admin/menu/sale/"/>
+			<page name="/admin/menu/useful/"/>
+
+			<page name="/admin/menu/info/" subpath="list"/>
+			<page name="/admin/menu/info/edit/"/>
+            <page name="/admin/menu/info/slider/" preg="/menu/(info)/slider/" path="main/slider/list"/>
+
+			<page name="/admin/menu/faq/" subpath="list"/>
+			<page name="/admin/menu/faq/edit/"/>
+		</pages>
+		<rules>
+			<rule id="menu">
+				<elements>
+					<element>list</element>
+					<element>list/lang</element>
+					<element>pages</element>
+					<element>rigth</element>
+					<element>rigth/lang</element>
+					<element>footer</element>
+					<element>footer/lang</element>
+					<element>arenda</element>
+					<element>sale</element>
+					<element>useful</element>
+				</elements>
+			</rule>
+			<rule id="menu.info">
+				<elements>
+					<element>info/edit</element>
+					<element>info/edit/lang</element>
+					<element>info/list</element>
+				</elements>
+			</rule>
+			<rule id="menu.faq">
+				<elements>
+					<element>faq/edit</element>
+					<element>faq/list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

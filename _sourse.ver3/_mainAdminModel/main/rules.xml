@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="shop" name="Витрины">
+		<menu>
+			<link name="/admin/shop/" menu="Витрины"/>
+		</menu>
+		<pages>
+			<page name="/admin/shop/"  path="main/shop"/>
+		</pages>
+		<rules>
+			<rule id="shop">
+				<elements>
+					<element>shop</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+	<modul id="main" name="Cтраницы информации">
+		<menuList>
+			<menu id="about">
+				<link name="/admin/main/" menu="Главная" submenu="Информация"/>
+				<link name="/admin/main/slider/" submenu="Слайд шоу"/>
+				<link name="/admin/main/showcase/" menu="Яхты"/>
+			</menu>
+			<menu id="search">
+				<link name="/admin/search/info/" menu="Поиск"/>
+			</menu>
+			<menu id="map">
+				<link name="/admin/map/info/" menu="Карта сайта"/>
+			</menu>
+			<menu id="contact">
+				<link name="/admin/contact/" menu="Контакты"/>
+			</menu>
+		</menuList>
+		<pages>
+			<page name="/admin/main/" preg="/(main)/ /" path="main/info"/>
+			<page name="/admin/main/showcase/"/>
+			<page name="/admin/main/slider/" preg="/(main)/slider/" path="main/slider/list"/>
+			<page name="/admin/search/info/" preg="/(search)/info/" path="main/info"/>
+			<page name="/admin/map/info/" preg="/(map)/info/" path="main/info"/>
+			<page name="/admin/contact/" preg="/(contact)/" path="main/info"/>
+		</pages>
+		<rules>
+			<rule id="main">
+				<elements>
+					<element>info</element>
+					<element>showcase</element>
+					<element>info/lang</element>
+					<element>slider/list</element>
+					<element>slider/edit</element>
+				</elements>
+			</rule>
+			<rule id="config">
+				<elements>
+					<element>config</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

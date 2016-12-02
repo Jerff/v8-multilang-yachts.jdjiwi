@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php $metas = cmfHeader::getTitleMeta(); ?>
+		<?= $metas ?>
+        <?= cmfHeader::getHead() ?>
+        <?= cmfHeader::getRobots() ?>
+
+        <? echo str_replace('<meta name="robots" content="index,follow" />','',$head); ?>
+
+		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+        <meta content="telephone=no" name="format-detection" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $rssUrl ?>" />
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/assets/templates/nsk/css/ie7.css" /><![endif]-->
+        <script type="text/javascript">
+    window.___gcfg = {lang: 'ru'};
+
+    (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
+		<?php
+			$error = "";
+			if (strpos($metas, '<title>404')!==false)
+				$error = "_gaq.push(['_trackPageview', '/404.html?page=' + document.location.pathname + document.location.search + '&from;=' + document.referrer + '&etype;=missingcategory]);";
+			echo
+			"
+<script type=\"text/javascript\">
+var _gaq = _gaq || [];
+_gaq.push (['_setAccount', 'UA-4449273-7']);
+_gaq.push (['_addOrganic', 'yandex.ru', 'query']);
+_gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+_gaq.push (['_addOrganic', 'nigma.ru', 's']);
+_gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+_gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+_gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+_gaq.push (['_addOrganic', 'meta.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+_gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+_gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+_gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+_gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+_gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.ua', 'q']);
+_gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+_gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+_gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+_gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+_gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+_gaq.push (['_addOrganic', 'akavita.by', 'z']);
+_gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+_gaq.push (['_addOrganic', 'all.by', 'query']);
+_gaq.push (['_trackPageview']);\n
+".$error."\n
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>";
+		?>
+
+        <? //$headCounters ?>
+    </head>
+    <body id="<?= $body ?>">
+        <script type="text/javascript">
+            var sliderTime = <?= $sliderTime ?>;
+        </script>
+        <?= $headerCounters ?>
+        <?=$networkL?>
+        <div id="header">
+            <div class="wrap">
+                <div class="main_menu">
+                    <a href="<?= $index ?>"><img src="/images/logo.png" alt="" /></a>
+                    <div class="phone">
+                        <p><?= word('Контактный телефон') ?></p>
+
+                        <![if ! lte IE 8]><select id="city_list" name="type" onchange="shangePhone(this);">
+                            <? foreach ($phone as $row) { ?>
+                                <option <? if (isset($row['sel'])) { ?>selected="selected"<? } ?> value="<?= $row['phone'] ?>"><?= $row['name'] ?></option>
+                            <? } ?>
+                        </select><![endif]>
+                        <!--[if lte IE 8]>
+                        <select id="city_list" name="type" onchange="shangePhone(this);">
+                        <? foreach ($phone as $row) { ?>
+                                    <option <? if (isset($row['sel'])) { ?>selected="selected"<? } ?> value="<?= $row['phone'] ?>"><?= $row['name'] ?></option>
+                        <? } ?>
+                        </select>
+                        <![endif]-->
+
+                        <div class="number">
+                            <p id="phone-str"><?= $phoneNumber['phone'] ?></p>
+                        </div>
+                        <a class="mybutton" href="<?= cmfMenu::requestUrl() ?>"><?= word('Сделать запрос на подбор яхты') ?></a>
+                    </div>
+                    <div class="lang">
+                        <? foreach ($mLang as $row) { ?>
+                            <a style="background: url(<?= $row['image'] ?>) no-repeat left;" href="<?= $row['url'] ?>" class="<?= $row['uri'] ?> <? if (isset($row['sel'])) { ?>selectedLang<? } ?>"><?= $row['name'] ?></a>
+                        <? } ?>
+                    </div>
+                    <div class="ajaxsearch">
+                        <? if ($isMain and 0) { ?>
+                            <div class="gplus"><g:plusone></g:plusone></div>
+                        <? } ?>
+                        <form id="ajaxSearch_form" action="<?= $searchUrl ?>" method="post">
+                            <fieldset>
+                                <input type="hidden" name="advsearch" value="oneword" />
+                                <label>
+                                    <input data-default="<?= $searchDefault ?>" id="ajaxSearch_input" class="cleardefault" type="text" name="searchName" value="<?= $searchName ?>"/>
+                                </label>
+                                <label>
+                                    <input id="ajaxSearch_submit" type="submit" name="sub" value="ОК" />
+                                </label>
+                            </fieldset>
+                        </form>
+                        <div class="AS_ajax_resultsIntroFailure">
+                        </div>
+                    </div>
+                    <div class="dropdown <?=$menuId ?>">
+                        <ul>
+                            <? foreach ($mMenu as $row) { ?>
+                                <li class="<?= $row['class'] ?> <? if (isset($row['sel'])) { ?>active<? } ?>">
+                                    <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                                    <? if (!empty($row['childs'])) { ?>
+                                        <ul>
+                                            <? foreach ($row['childs'] as $row) { ?>
+                                                <li class="<? if (isset($row['sel'])) { ?>active<? } ?>"><a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a></li>
+                                            <? } ?>
+                                        </ul>
+                                    <? } ?>
+                                </li>
+                            <? } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>

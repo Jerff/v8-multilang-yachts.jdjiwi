@@ -1,0 +1,11 @@
+<? foreach ($mReviews as $id => $row) { ?>
+    <div class="about_clients">
+        <h4><?= $row['name'] ?></h4>
+        <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?> class="img-left"/>
+        <?= $row['content'] ?>
+    </div>
+<? } ?>
+
+<? if (isset($mPageUrl)) {
+    ?><div class="about_clients-pages"><?= cmfPagination::view($mPageUrl) ?></div><? }
+?>

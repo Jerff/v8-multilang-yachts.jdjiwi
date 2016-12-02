@@ -1,0 +1,21 @@
+<? if(isset($_slider)) { ?>
+<script>
+<? /*foreach($_slider as $row) { ?>
+    cmf.main.imageLoad.add('<?=$row['image'] ?>');
+<? } */?>
+</script>
+
+    <div class="big_img2">
+     <div <? if($isSlider) { ?>id="slider" class="nivoSlider"<? } ?>>
+        <? foreach($_slider as $row) if(empty($row['link'])) { ?>
+            <img src="<?=$row['image'] ?>" width="774" height="348" alt="<?=$row['title'] ?>" />
+        <? } else { ?>
+            <a href="<?=$row['link'] ?>"><img src="<?=$row['image'] ?>" width="774" height="348" alt="<?=$row['title'] ?>" /></a>
+        <? } ?>
+     </div>
+    </div>
+<? } ?>
+
+    <div class="text_block3">
+        <?=$content ?>
+    </div>

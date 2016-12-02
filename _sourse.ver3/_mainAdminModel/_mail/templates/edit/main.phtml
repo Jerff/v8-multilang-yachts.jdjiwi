@@ -1,0 +1,55 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="svet_td">Название шаблона:</td>
+<td class="svet_td2"><?=$form->html('name', 'class="width99"') ?></td>
+</tr>
+
+
+<tr>
+<td class="svet_td">Переменные:</td>
+<td class="svet_td2">
+
+<table width="50%" border="0" cellspacing="2" cellpadding="2" class="table">
+<tr>
+<td>{proectUrl}</td><td width="90%">- Адрес сайта</td>
+</tr>
+<? foreach($main_edit->getEmailVar() as $value) { ?>
+<tr>
+<td>{<?=$value['var'] ?>}</td><td>- <?=$value['name'] ?></td>
+</tr>
+<? } ?>
+</table>
+<?=$form->html('var', 'class="width99" rows="10"') ?>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2"><?=$form->html('header', 'class="width99"') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Подробный текст:</td>
+<td class="svet_td2"><?=$form->html('content', 'class="width99" rows="20"') ?>
+</td>
+</tr>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

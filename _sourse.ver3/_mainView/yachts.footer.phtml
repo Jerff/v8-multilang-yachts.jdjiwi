@@ -1,0 +1,33 @@
+</div>
+</div>
+<div id="navigation">
+    <? if (!empty($mMenu)) { ?>
+        <ul class="right-menu">
+            <? if (!empty($mBMenu)) { ?>
+
+                <? foreach ($mBMenu as $row) { ?>
+                    <li <? if (isset($row['sel'])) { ?>class="last"<? } ?>>
+                        <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                    </li>
+                <? } ?>
+                <li class="navigation-sep"></li>
+            <? } ?>
+
+            <? foreach ($mMenu as $row) if($row) { ?>
+                <li <? if (isset($row['sel'])) { ?>class="last"<? } ?>>
+                    <a href="<?= $row['url'] ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a>
+                </li>
+            <? } ?>
+        </ul>
+    <? } ?>
+    <div class="social-networks">
+        <h5><?= word('Социальные сети') ?> <i class="fa fa-bars"></i></h5>
+        <div class="news-contents">
+            <?= $networkR ?>
+        </div>
+    </div>
+    <div id="navigation-search">
+        <?= $search ?>
+    </div>
+</div>
+</div>

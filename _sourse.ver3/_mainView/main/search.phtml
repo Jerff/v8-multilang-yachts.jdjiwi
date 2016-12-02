@@ -1,0 +1,92 @@
+<div class="searchbar">
+    <h2><?= word('Подбор яхты') ?> <i class="fa fa-bars"></i></h2>
+    <form action="<?= $searchUrl ?>?form=1" method="post" id="selectYachts" enctype="multipart/form-data" target="_self">
+        <input type="hidden" name="selectTime" id="selectTime" value="">
+        <div>
+            <label class="service"><?= word('Вид услуги') ?>:</label>
+            <input id="typeArenda" class="niceRadio" <?= $isArenda ? 'checked="checked"' : '' ?> name="type" type="radio" value="arenda" />
+            <label class="search_rent" for="typeArenda"><?= word('Аренда') ?></label>
+            <input id="typeSale" class="niceRadio" <?= $isSale ? 'checked="checked"' : '' ?> name="type" type="radio" value="sale" />
+            <label for="typeSale"><?= word('Продажа') ?></label>
+        </div>
+
+        <div class="typeContainer">
+            <label class="yacht_type"><?= word('Тип яхты') ?>:</label>
+            <div class="arendaForm <?= $isArenda ? '' : 'cmfHide' ?>">
+                <? foreach ($mAType as $id => $name) { ?>
+                    <span>
+                        <label><input id="aType[<?= $id ?>]" name="aType[<?= $id ?>]" class="niceCheck" type="checkbox" <?= (isset($post['aType'][$id]) or !isset($post['aType'])) ? 'checked="checked"' : '' ?> value="<?= $id ?>" /><?= $name ?></label>
+                    </span>
+                <? } ?>
+            </div>
+            <div class="saleForm <?= $isSale ? '' : 'cmfHide' ?>">
+                <? foreach ($mSType as $id => $name) { ?>
+                    <span>
+                        <label><input id="sType[<?= $id ?>]" name="sType[<?= $id ?>]" class="niceCheck" type="checkbox" <?= (isset($post['sType'][$id]) or !isset($post['sType'])) ? 'checked="checked"' : '' ?> value="<?= $id ?>" /><?= $name ?></label>
+                    </span>
+                <? } ?>
+            </div>
+        </div>
+
+        <div class="sliderContainer arendaForm <?= $isArenda ? '' : 'cmfHide' ?>">
+            <label class="sbar" for="slider"><?= word('Цена за час') ?>:</label>
+            <div class="sliderCont">
+                <div class="slider-arenda-price"></div>
+                <div class="formCost">
+                    <input class="minCost" id="minAPrice" name="minAPrice" type="text" value="<?= $minAPrice ?>" data-min="<?= $aYachts['min(price)'] ?>" data-max="<?= $aYachts['max(price)'] ?>"/>
+                    <input class="maxCost" id="maxAPrice" name="maxAPrice" type="text" value="<?= $maxAPrice ?>" data-min="<?= $aYachts['min(price)'] ?>" data-max="<?= $aYachts['max(price)'] ?>"/>
+                </div>
+            </div>
+            <label class="meter" for="slider2">USD</label>
+        </div>
+        <div class="sliderContainer saleForm <?= $isSale ? '' : 'cmfHide' ?>">
+            <label class="sbar" for="slider"><?= word('Цена') ?>:</label>
+            <div class="sliderCont">
+                <div class="slider-sale-price"></div>
+                <div class="formCost">
+                    <input class="minCost" id="minSPrice" name="minSPrice" type="text" value="<?= $minSPrice ?>" data-min="<?= $sYachts['min(price)'] ?>" data-max="<?= $sYachts['max(price)'] ?>"/>
+                    <input class="maxCost" id="maxSPrice" name="maxSPrice" type="text" value="<?= $maxSPrice ?>" data-min="<?= $sYachts['min(price)'] ?>" data-max="<?= $sYachts['max(price)'] ?>"/>
+                </div>
+            </div>
+            <label class="meter" for="slider2">USD</label>
+        </div>
+
+        <div class="sliderContainer">
+            <label class="sbar" for="sliderCont"><?= word('Длина яхты') ?>:</label>
+            <div class="sliderCont arendaForm <?= $isArenda ? '' : 'cmfHide' ?>">
+                <div class="slider-arenda-size"></div>
+                <div class="formCost">
+                    <input class="minSize" id="minASize" name="minASize" type="text" value="<?= $minASize ?>" data-min="<?= $aYachts['min(length)'] ?>" data-max="<?= $aYachts['max(length)'] ?>"/>
+                    <input class="maxSize" id="maxASize" name="maxASize" type="text" value="<?= $maxASize ?>" data-min="<?= $aYachts['min(length)'] ?>" data-max="<?= $aYachts['max(length)'] ?>"/>
+                </div>
+            </div>
+            <div class="sliderCont saleForm <?= $isSale ? '' : 'cmfHide' ?>">
+                <div class="slider-sale-size"></div>
+                <div class="formCost">
+                    <input class="minSize" id="minSSize" name="minSSize" type="text" value="<?= $minSSize ?>" data-min="<?= $sYachts['min(length)'] ?>" data-max="<?= $sYachts['max(length)'] ?>"/>
+                    <input class="maxSize" id="maxSSize" name="maxSSize" type="text" value="<?= $maxSSize ?>" data-min="<?= $sYachts['min(length)'] ?>" data-max="<?= $sYachts['max(length)'] ?>"/>
+                </div>
+            </div>
+            <label class="meter" for="slider2"><?= word('метров') ?></label>
+        </div>
+        <div class="charter arendaForm <?= $isArenda ? '' : 'cmfHide' ?>">
+            <label for="charter"><?= word('Регион чартера') ?>:</label>
+            <select id="charter" name="charter">
+                <? foreach ($mArenda as $id => $name) { ?>
+                    <option value="<?= $id ?>" <?= (isset($post['charter']) and $post['charter'] == $id) ? 'selected="selected"' : '' ?>><?= $name ?></option>
+                <? } ?>
+            </select>
+        </div>
+        <div class="charter saleForm1 cmfHide <?= $isSale ? '' : 'cmfHide' ?>">
+            <label for="shipyard"><?= word('Верфь') ?>:</label>
+            <select id="shipyard" name="shipyard">
+                <? foreach ($mShipyard as $id => $name) { ?>
+                    <option value="<?= $id ?>" <?= (isset($post['shipyard']) and $post['shipyard'] == $id) ? 'selected="selected"' : '' ?>><?= $name ?></option>
+                <? } ?>
+            </select>
+        </div>
+        <input type="submit" value="<?= word('Поиск') ?>" />
+        <div class="clear"></div>
+    </form>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,102 @@
+<div id="footer">
+    <div class="wrap">
+        <?= $footer ?>
+        <div class="nav-toggle-footer"><i class="fa fa-bars"></i></div>
+        <ul class="footer_menu footer_menu_level1">
+            <? foreach ($mMenu as $row) { ?>
+                <li class="<? if (isset($row['last'])) { ?>last<? } ?> <? if (isset($row['sel'])) { ?>active<? } ?>">
+                    <?php $nurl = str_replace('http://' . $_SERVER['HTTP_HOST'], '', $row['url']); ?>
+                    <a class="level-1" href="<?= $nurl ?>" title="<?= $row['title'] ?>"><?= $row['name'] ?></a>
+                    <? if (!empty($row['childs'])) { ?>
+                        <ul class="footer_menu">
+                            <li class="li-section"><a href="<?= $nurl ?>" title="<?= $row['title'] ?>"><?= $row['name'] ?></a></li>
+                            <? foreach ($row['childs'] as $row) { ?>
+                                <?php $nurl = str_replace('http://' . $_SERVER['HTTP_HOST'], '', $row['url']); ?>
+                                <li><a href="<?= $nurl ?>" title="<?= $row['title'] ?>" ><?= $row['name'] ?></a></li>
+                            <? } ?>
+                        </ul>
+                    <? } ?>
+                </li>
+            <? } ?>
+        </ul>
+        <?php
+        $str = str_replace('<li class="footer_phone">+380 48 737-61-81</li>', '', $adress);
+        global $number_kiev;
+        if ($number_kiev != '') {
+            $str = str_replace('+380 44 383-64-46', $number_kiev, $str);
+            $str = str_replace('<li class="mob">+380 94 928-34-46</li>', '', $str);
+        }
+        echo $str;
+        ?>
+        <div class="social-service">
+            <div>
+                <!--Кнопка ВКОНТАКТЕ-->
+                <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+                <script type="text/javascript">
+                    VK.init({apiId: 3468483, onlyWidgets: true});
+                </script>
+                <div style='display:inline;' id='vk_like'></div>
+                <script type='text/javascript'>
+                    VK.Widgets.Like('vk_like', {type: 'mini', height: 24});
+                </script>
+                <!-- /Кнопка ВКОНТАКТЕ-->
+            </div>
+
+            <div>
+                <!--Кнопка ГУГЛ+1-->
+                <g:plusone size="medium" annotation='none'></g:plusone>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <script type="text/javascript">
+                    (function () {
+                        var po = document.createElement('script');
+                        po.type = 'text/javascript';
+                        po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(po, s);
+                    })();
+                </script>
+                <!-- /Кнопка ГУГЛ+1-->
+            </div>
+
+            <div>
+                <!--Кнопка ТВИТТЕР-->
+                <a href='https://twitter.com/share' class='twitter-share-button'>Tweet</a>
+                <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = '//platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'twitter-wjs');</script>
+                <!-- /Кнопка ТВИТТЕР-->
+            </div>
+
+            <div>
+                <!--Кнопка ФЕЙСБУК-->
+                <div style='display:inline;' class='fb-like' data-send='true' data-layout='button_count' data-width='450' data-show-faces='true'></div>
+                <div id='fb-root'></div>
+                <script>(function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id))
+                            return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = '//connect.facebook.net/ru_RU/all.js#xfbml=1';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                <!-- /Кнопка ФЕЙСБУК-->
+            </div>
+        </div>
+        <div class="copyright">
+            <?= $copyright ?>
+        </div>
+        <div class="empty"></div>
+    </div>
+</div>
+<?= $сounters ?>
+<div class="empty"></div>
+<div id="idAjaxLog"></div>
+</body>
+</html>

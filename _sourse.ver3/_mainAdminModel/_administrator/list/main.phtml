@@ -1,0 +1,56 @@
+	<table class="table_position">
+	<tr class="header_col">
+	<td>Группы: <?=cmfView::selectOncahge($filterGroup) ?></td>
+	</tr>
+	</table>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td width="150px">Имя</td>
+	<td width="150px">Логин</td>
+	<td>Дата/<br />ip-proxy последнего захода</td>
+	<td width="150px">Действия</td>
+	<td width="22px">Вкл</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+
+	<td><?=$data->name ?></td>
+	<td><? if($key) echo cmfAdminView::buttonType3($main_list->getEditUrl(), $data->login) ?></td>
+	<td><?=$data->sesDate ?><br><?=$data->sesIp ?>(<?=$data->sesProxy ?>)</td>
+
+	<td>
+		<? 	$userUnban = !$data->is('ban') ? 'cmfHide' : '';
+			$userExit = $data->is('ban') ? 'cmfHide' : '';
+		?>
+		<div id="userUnban<?=$key ?>" class="<?=$userUnban ?>">
+		<?=cmfAdminView::onclickType1("modul.ajax('userUnban', '$key');", 'Разбан') ?>
+		</div>
+		<div id="userExit<?=$key ?>" class="<?=$userExit ?>">
+		<?=cmfAdminView::onclickType1("modul.ajax('userExit', '$key');", 'Выход') ?>
+		</div>
+	</td>
+
+	<td><?=$form->html('visible') ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?></td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

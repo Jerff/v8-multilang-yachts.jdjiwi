@@ -1,0 +1,16 @@
+<link rel=stylesheet type='text/css' href='/js/sortable/sortable.css'>
+<script type="text/javascript" src="/js/sortable/sortable.js"></script>
+<a name="table<?= $table['id'] ?>"/>
+<table border="<?= $table['border'] ?>" cellspacing="0" cellpadding="0" bgcolor="<?= $table['bgcolor'] ?>" bordercolor="<?= $table['bordercolor'] ?>" class="sortable" id="sortable<?=$table['id'] ?>">
+    <? $i = 0;
+    foreach ($mData as $value) { ?>
+        <tr>
+            <? for ($index = 1; $index <= $table['colum']; $index++) { ?>
+                <? if ($i) { ?><td><? } else { ?><th><? } ?>
+                    <?=get($value, $index) ?>
+                    <? if ($i) { ?></td><? } else { ?></th><? } ?>
+            <? } ?>
+        </tr>
+        <? $i++ ?>
+    <? } ?>
+</table>

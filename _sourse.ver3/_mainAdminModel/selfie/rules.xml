@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="selfie" name="Selfie">
+		<menu>
+			<link name="/admin/selfie/list/" menu="Обои"></link>
+		</menu>
+		<pages>
+			<page name="/admin/selfie/list/"></page>
+		</pages>
+		<rules>
+			<rule id="selfie">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

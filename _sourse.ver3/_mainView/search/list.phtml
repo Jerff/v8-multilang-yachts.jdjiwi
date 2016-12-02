@@ -1,0 +1,22 @@
+<? if (isset($search)) { ?>
+
+    <p class="ajaxSearch_resultsInfos"><?= $count ?> <?= word('записей найдено по запросу') ?> &laquo;<span class="ajaxSearch_highlight ajaxSearch_highlight1"><?= $searchName ?></span>&raquo;. <span class="ajaxSearch_resultsDisplayed"><?= word('Показано') ?>: <?= $view ?>.</span></p>
+
+    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl, 'pages-top') ?>
+    <div class="empty"></div>
+
+    <? $i = 0;
+    foreach ($search as $id => $row) {
+        ?>
+        <div class="short_article <?= $i = !$i ? 'short_article_item' : '' ?>">
+            <h4><a href="<?= $row['url'] ?>"><?= $row['name'] ?></a></h4>
+            <p><?= $row['notice'] ?></p>
+        </div>
+    <? } ?>
+
+    <? if (isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>
+
+<? } else { ?>
+    <br />
+    <h2><?= word('По заданным критериям ничего не найдено') ?></h2>
+<? } ?>

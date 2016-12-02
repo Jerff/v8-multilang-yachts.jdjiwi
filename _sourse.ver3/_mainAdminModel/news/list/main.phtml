@@ -1,0 +1,36 @@
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td width="50px">Дата</td>
+	<td>Заголовок</td>
+	<td width="200px">Постоянная ссылка</td>
+	<td width="22px">Вверху списка</td>
+	<td width="22px">Вид</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+	<td><?=$data->date ?></td>
+	<td><? if($key) echo cmfAdminView::buttonType3($main_list->getEditUrl(), $data->lang('header')) ?></td>
+	<td><?=$main_list->viewListSiteUrl($data) ?></td>
+	<td><?=$form->html('main') ?></td>
+	<td><?=$form->html('visible') ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?></td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLimitButton($limitUrl, $linkPage,
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

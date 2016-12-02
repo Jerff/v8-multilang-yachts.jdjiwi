@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="reviews" name="Отзывы">
+		<menu>
+			<link name="/admin/reviews/" menu="Отзывы"/>
+			<link name="/admin/reviews/edit/"/>
+			<link name="/admin/reviews/brand/" menu="Клиенты"/>
+		</menu>
+		<pages>
+			<page name="/admin/reviews/" subpath="list"></page>
+			<page name="/admin/reviews/edit/"></page>
+			<page name="/admin/reviews/brand/"></page>
+		</pages>
+		<rules>
+			<rule id="reviews">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+			<rule id="brand">
+				<elements>
+					<element>brand</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

@@ -1,0 +1,66 @@
+
+<div class="recommend-height"></div>
+<?
+foreach ($yachtsList as $row) {
+    list($page, $type, $id) = $row;
+    if (isset($typeList[$page][$id]) and is_array($typeList[$page][$id])) {
+        $row = $typeList[$page][$id];
+        switch ($page) {
+            case 'arenda':
+                ?>
+                <div class="rent rent-arenda1">
+                    <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                    <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                    <div class="name"><?= $row['name'] ?></div>
+                    <div class="size"><?= $row['param1'] ?></div>
+                    <? if (!empty($row['param2'])) { ?>
+                        <div class="region"><?= $row['param2'] ?></div>
+                    <? } ?>
+                    <div class="type"></div>
+                    <!--<div class="arendaPrice">Стоимость <br>аренды:</div>-->
+                    <div class="price"><?= word('Цена за час') ?>: <?= $row['priceHour'] ?></div>
+                    <? /*
+                      <div class="price">
+                      <?= word('час') ?>: <?= $row['priceHour'] ?>
+                      <br><?= word('12 часов') ?>: <?= $row['priceLightDay'] ?>
+                      <br><?= word('сутки') ?>: <?= $row['priceDay'] ?>
+                      <br><?= word('неделя') ?>: <?= $row['priceWeek'] ?>
+                      </div> */ ?>
+                </div>
+                <?
+                break;
+
+            case 'sale':
+                ?>
+                <div class="sale">
+                    <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                    <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                    <div class="name"><?= $row['name'] ?></div>
+                    <div class="size"><?= $row['param'] ?></div>
+                    <div class="year"><?= word('Верфь') ?>: <?= $row['shipyards'] ?></div>
+                    <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                    <div class="type"></div>
+                </div>
+                <?
+                break;
+
+            case 'brokerage':
+                ?>
+                <div class="sale">
+                    <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                    <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                    <div class="name"><?= $row['name'] ?></div>
+                    <div class="size"><?= $row['param2'] ?></div>
+                    <div class="year"><?= word('Год') ?>: <?= $row['param'] ?></div>
+                    <div class="price"><?= word('Цена') ?>: <?= $row['price'] ?></div>
+                    <div class="type"></div>
+                </div>
+                <?
+                break;
+
+            default:
+                break;
+        }
+        ?>
+    <? } ?>
+<? } ?>

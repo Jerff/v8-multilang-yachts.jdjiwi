@@ -1,0 +1,218 @@
+
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить')) ?>
+
+<?=$main_edit->htmlStartForm('edit') ?>
+<table class="great_table">
+<? if($isContact) { ?>
+<tr class="header_col">
+<td colspan="2"><?=$main_edit->viewSiteUrl() ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Телефоны:</td>
+<td class="svet_td2">
+	<?=$main_edit->langViewTranslate('phone') ?>
+    <?=$langForm->html('phone', 'class="width50" rows="3"') ?>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Контакты <br />внизу страницы:</td>
+<td class="svet_td2">
+	<?=$main_edit->langViewTranslate('adress') ?>
+    <?=$langForm->html('adress', 'class="width99" rows="7"') ?>
+</td>
+</tr>
+
+<tr>
+<td class="svet_td">Меню для главной:</td>
+<td class="svet_td2">
+	<?=$main_edit->langViewTranslate('mainMenu') ?>
+    <?=$langForm->html('mainMenu', 'class="width99" rows="7"') ?>
+</td>
+</tr>
+<? } ?>
+
+<? if($isContent or $isHeader) { ?>
+<tr class="header_col">
+<td colspan="2"><?= !$isContact ? $main_edit->viewSiteUrl() : '&nbsp;' ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Заголовок:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('header') ?>
+    <?=$langForm->html('header', 'class="width50"') ?></td>
+</tr>
+
+<? if($isNotice) { ?>
+<tr>
+<td class="svet_td">Анонс:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('notice') ?>
+    <?=$langForm->html('notice', 200) ?></td>
+</tr>
+<? } ?>
+
+<? if($isImage) { ?>
+<tr>
+<td class="svet_td">Изображение:</td>
+<td class="svet_td2"><?=$main_edit->getImage('main', 'image') ?></td>
+</tr>
+<? } ?>
+
+<? if($isFlashMap) { ?>
+<tr>
+<td class="svet_td">Флеш карта:</td>
+<td class="svet_td2">
+<div class="typeMap">
+    <div class="cursor">Показать параметры</div>
+
+    <div class="mapParam cmfHide">
+    <br />Флеш карта
+    <br /><?=$main_edit->getImage('main', 'flash') ?>
+    <br /><br />Параметры карты
+    <br /><?=$form->html('flashXml', 'class="width99" rows="15" style="position: relative;" wrap="off"') ?>
+
+    <br />Список мест
+    <table width="100%">
+<?
+function viewFlashParam($list, $parent=0, $level=0) {
+    if(!isset($list[$parent])) return;
+    foreach($list[$parent] as $k=>$v) { ?>
+        <tr class="columnn_svet2">
+            <td width="20%" style="padding-left:<?=10+15*$level ?>px"><?=$v['name'] ?></td>
+            <td width="40%"><?=$v['image'] ?></td>
+            <td width="40%"><?=$v['url'] ?></td>
+        </tr>
+        <? viewFlashParam($list, $k, $level+1) ?>
+    <? }
+}
+viewFlashParam($main_edit->getFlashParamList());
+?>
+    </table>
+    <br /><br />Альтернативный контент
+    <br /><?=$form->html('flashContent', 200) ?>
+    </div>
+</div>
+
+<script language="JavaScript">
+$('.typeMap .cursor').click(function() {
+    if(style.hideShow('.typeMap .mapParam')) {
+        $(this).html('Скрыть параметры');
+        cmf.admin.gallery.show();
+        $('#<?=$form->getId('flashXml') ?>').resizable();
+    } else {
+        $(this).html('Показать параметры');
+        cmf.admin.gallery.hide();
+    }
+});
+</script>
+</td>
+</tr>
+<? } ?>
+
+<? if($isContent) { ?>
+<tr>
+<td class="svet_td">Контент:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('content') ?>
+    <?=$langForm->html('content', 400) ?></td>
+</tr>
+
+<? if($isFooter) { ?>
+<tr>
+<td class="svet_td">Текс внизу страницы:</td>
+<td class="svet_td2">
+	<?=$main_edit->langViewTranslate('footer') ?>
+    <?=$langForm->html('footer', 200) ?>
+</td>
+</tr>
+<? } ?>
+
+<? }} ?>
+
+
+<? if($isTitle) { ?>
+<tr class="header_col">
+<td colspan="2">Seo</td>
+</tr>
+<tr>
+<td class="svet_td">title:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('title') ?>
+    <?=$langForm->html('title', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">keywords:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('keywords') ?>
+    <?=$langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">description:</td>
+<td class="svet_td2">
+    <?=$main_edit->langViewTranslate('description') ?>
+    <?=$langForm->html('description', 'class="width99" rows="3"') ?></td>
+</tr>
+<? } ?>
+
+
+<? if($isCoogleMap) { ?>
+<tr class="header_col">
+<td colspan="2">Карта гугля<br />Карта появится внутри &lt;div id="Gmap"&gt;&nbsp;&lt;/div&gt;</td>
+</tr>
+<tr>
+<td class="svet_td">api google для сайта:</td>
+<td class="svet_td2">
+<?=$form->html('mapGoogleApi', 'class="width99" rows="7"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Координаты:</td>
+<td class="svet_td2">
+<?=$form->html('mapGoogleCoordinates', 'class="width50"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Сообщение на карте:</td>
+<td class="svet_td2">
+<?=$form->html('mapGoogleContent', 'class="width99" rows="7"') ?></td>
+</tr>
+<? } ?>
+
+
+<? if($isYandexMap) { ?>
+<tr class="header_col">
+<td colspan="2">Яндекс карты<br />Карта появится внутри &lt;div id="YMapsID"&gt;&nbsp;&lt;/div&gt;</td>
+</tr>
+<tr>
+<td class="svet_td">ключ api:</td>
+<td class="svet_td2">
+<?=$form->html('mapYandexApi', 'class="width99" rows="7"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Координаты:</td>
+<td class="svet_td2">
+<?=$form->html('mapYandexCoordinates', 'class="width50"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Заголовок сообщения:</td>
+<td class="svet_td2">
+<?=$form->html('mapYandexNotice', 'class="width99" rows="2"') ?></td>
+</tr>
+<tr>
+<td class="svet_td">Сообщение на карте:</td>
+<td class="svet_td2">
+<?=$form->html('mapYandexContent', 'class="width99" rows="7"') ?></td>
+</tr>
+<? } ?>
+
+
+
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить')) ?>

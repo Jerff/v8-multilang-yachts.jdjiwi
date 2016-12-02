@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+    <modul id="foto" name="Фотографии">
+        <menu>
+            <link name="/admin/foto/list/" menu="Фотографии"></link>
+            <link1 name="/admin/foto/" menu="Информация"/>
+        </menu>
+        <pages>
+			<page name="/admin/foto/list/"></page>
+            <page name="/admin/foto/" preg="/(foto)/" path="main/info"/>
+        </pages>
+        <rules>
+            <rule id="foto">
+                <elements>
+                    <element>edit</element>
+                    <element>list</element>
+                </elements>
+            </rule>
+        </rules>
+    </modul>
+</moduls>

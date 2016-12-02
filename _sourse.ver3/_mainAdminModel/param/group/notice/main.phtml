@@ -1,0 +1,110 @@
+
+<? if (1) { ?>
+
+    <?
+    view_command::viewLineButton(
+            cmfAdminView::buttonType1("edit.postAjax('update');", 'Применить'))
+    ?>
+
+    <?= $view->htmlStartForm('edit') ?>
+    <table class="great_table">
+
+        <tr class="header_col">
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="svet_td">Телефон</td>
+            <td class="svet_td2">
+                <?
+                switch ($group) {
+                    case 'shipyards':
+                        ?><?= $form->html('shipyardsPhone', 'class="width50"') ?><?
+            break;
+        case 'brokerage':
+                        ?><?= $form->html('brokeragePhone', 'class="width50"') ?><?
+            break;
+        case 'board':
+                        ?><?= $form->html('boardPhone', 'class="width50"') ?><?
+            break;
+        case 'arenda':
+                        ?><?= $form->html('arendaPhone', 'class="width50"') ?><?
+            break;
+    }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="svet_td">Показывать парамер в списках</td>
+            <td class="svet_td2">
+                <?
+                switch ($group) {
+                    case 'shipyards':
+                        ?><?= $form->html('shipyardsParam', 'class="width50"') ?><?
+            break;
+        case 'board':
+                        ?>
+                        Год: <br /><?= $form->html('boardParam', 'class="width50"') ?>
+                        <br /><br />
+                        Длина: <br /><?= $form->html('boardParam2', 'class="width50"') ?><?
+            break;
+        case 'brokerage':
+                        ?>
+                        Год: <br /><?= $form->html('brokerageParam', 'class="width50"') ?>
+                        <br /><br />
+                        Отображать на витрине: <br /><?= $form->html('brokerageShowcaseParam', 'class="width50"') ?><?
+            break;
+        case 'arenda':
+                        ?>
+                        Длина: <br /><?= $form->html('arendaParam1', 'class="width50"') ?>
+                        <br /><br />
+                        Max. пассажиров: <br /><?= $form->html('arendaParam2', 'class="width50"') ?>
+                        <br /><br />
+                        Место стоянки: <br /><?= $form->html('arendaParam3', 'class="width50"') ?><?
+            break;
+    }
+                ?>
+            </td>
+        </tr>
+    </table>
+    <?= $view->htmlEndForm() ?>
+<? } ?>
+
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>
+
+
+<?= $main_list->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td width="22px">#</td>
+        <td>Параметр</td>
+        <td width="22px">Вид</td>
+        <td width="22px">Удалить</td>
+    </tr>
+
+    <?
+    foreach ($main_list as $key => $value) {
+        list($form, $data) = $value->main;
+        ?>
+        <?= view_list::startTR($main_list) ?>
+        <?= $main_list->getPostMove($data) ?>
+        <td><?= $form->html('param', 'class="width50"') ?></td>
+        <td><?= $form->html('visible') ?></td>
+        <td>
+            <?= $main_list->getHtmlListId(); ?>
+            <?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+        </td>
+    </tr>
+<? } ?>
+</table>
+<?= $main_list->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>

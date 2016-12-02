@@ -1,0 +1,10 @@
+<? $i = 0;
+foreach ($_news as $id => $row) { ?>
+    <div class="short_article <?= $i = !$i ? 'short_article_item' : '' ?>">
+        <h4><a href="<?= $row['url'] ?>"><?= $row['header'] ?></a></h4>
+        <div class="date"><?= $row['date'] ?></div>
+        <p><?= $row['notice'] ?></p>
+    </div>
+<? } ?>
+
+<? if(isset($mPageUrl)) cmfPagination::view($mPageUrl) ?>

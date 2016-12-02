@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<title><?=$title ?></title>
+
+    <link rel="icon" type="image/x-icon" href="<?=cmfBaseImg ?>/ico3.ico" />
+    <link rel="shortcut icon"  href="<?=cmfBaseImg ?>/ico3.ico" type="image/x-icon"  />
+
+    <meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+
+	<?=cmfHeader::getHead() ?>
+
+</head>
+<body>
+<div id="isAjaxLoad"><div class="isAjaxLoad">Загрузка...</div></div>
+<script language="JavaScript">
+cmf.ajax.setUrl('<?=cmfAdminUrl ?>/?isAjax=1');
+</script>
+<div id="mainIndex">

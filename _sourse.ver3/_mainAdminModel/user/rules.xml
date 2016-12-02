@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Пользователи">
+	<modul id="user" name="Пользователи">
+		<menu>
+			<link1 name="/admin/user/" menu="Пользователи"/>
+			<link1 name="/admin/user/edit/"/>
+		</menu>
+		<pages>
+			<page name="/admin/user/" subpath="list"/>
+			<page name="/admin/user/edit/"/>
+		</pages>
+		<rules>
+			<rule id="user">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

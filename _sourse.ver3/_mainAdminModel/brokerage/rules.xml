@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Каталог">
+	<modul id="brokerage" name="Брокераж яхт">
+        <menuList>
+    		<menu id="brokerage">
+    			<link name="/admin/brokerage/yachts/" menu="Список яхт"/>
+    			<link name="/admin/brokerage/yachts/edit/" select="yachts" submenu="Свойства"/>
+    			<link name="/admin/brokerage/yachts/param/" select="yachts" submenu="Парметры"/>
+    			<link name="/admin/brokerage/yachts/foto/" select="yachts" submenu="Фото"/>
+    			<link name="/admin/brokerage/yachts/plan/" select="yachts" submenu="Планы"/>
+    			<link name="/admin/param/brokerage/notice/" menu="Характеристики"/>
+    			<link1 name="/admin/param/brokerage/search/" menu="Подбор яхт"/>
+    		</menu>
+    		<menu id="type">
+    			<link1 name="/admin/brokerage/info/" menu="Брокераж яхт" submenu1="Информация"/>
+    			<link1 name="/admin/brokerage/slider/" submenu="Слайд шоу"/>
+    			<link name="/admin/brokerage/type/" menu="Типы яхт"/>
+    			<link name="/admin/brokerage/type/edit/" select="slider" submenu1="Информация"/>
+    			<link1 name="/admin/brokerage/type/slider/" select="slider" submenu="Слайд шоу"/>
+    		</menu>
+        </menuList>
+		<pages>
+			<page name="/admin/brokerage/info/" preg="/(brokerage)/info/" path="main/info"/>
+			<page name="/admin/brokerage/slider/" preg="/(brokerage)/slider/" path="main/slider/list"/>
+			<page name="/admin/brokerage/type/" subpath="list"/>
+			<page name="/admin/brokerage/type/edit/"/>
+			<page name="/admin/brokerage/type/slider/" preg="/(brokerage/type)/slider/" path="main/slider/list"/>
+
+			<page name="/admin/brokerage/yachts/" subpath="list"/>
+			<page name="/admin/brokerage/yachts/edit/"/>
+			<page name="/admin/brokerage/yachts/param/"/>
+			<page name="/admin/brokerage/yachts/foto/" subpath="list"/>
+			<page name="/admin/brokerage/yachts/plan/" subpath="list"/>
+		</pages>
+		<rules>
+			<rule id="brokerage">
+				<elements>
+					<element>type/list</element>
+					<element>type/edit</element>
+				</elements>
+			</rule>
+			<rule id="brokerage.yachts">
+				<elements>
+					<element>yachts/list</element>
+					<element>yachts/edit</element>
+					<element>yachts/param</element>
+					<element>yachts/foto/list</element>
+					<element>yachts/foto/multi</element>
+					<element>yachts/foto/edit</element>
+					<element>yachts/plan/list</element>
+					<element>yachts/plan/multi</element>
+					<element>yachts/plan/edit</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

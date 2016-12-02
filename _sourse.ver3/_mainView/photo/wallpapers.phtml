@@ -1,0 +1,57 @@
+<div class="yachttype yachttype-wallpapers">
+    <ul class="tabs tabsList">
+        <li id="foto"><span><?= word('Фото яхт') ?></span></li>
+        <li id="wallpapers" class="current"><span><?= word('Фото яхт(обои)') ?></span></li>
+    </ul>
+
+    <div class="box box-foto" data-id="foto">
+        <? if (isset($mFotoPageUrl)) cmfPagination::view($mFotoPageUrl) ?>
+        <div class="empty"></div>
+        <? foreach ($mFoto as $row) { ?>
+            <div class="rent wallpapers">
+                <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this)"><img class="wallpapers-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+            </div>
+        <? } ?>
+        <div class="empty"></div>
+        <? if (isset($mFotoPageUrl) and !empty($mFoto)) cmfPagination::view($mFotoPageUrl) ?>
+    </div>
+
+    <div class="box box-wallpapers visible" data-id="wallpapers">
+        <? if (isset($mWallpapersPageUrl)) cmfPagination::view($mWallpapersPageUrl) ?>
+        <div class="empty"></div>
+        <? foreach ($mWallpapers as $row) { ?>
+            <div class="rent wallpapers">
+                <a class='highslide' href="<?= $row['main'] ?>" onclick="return hs.expand(this)"><img class="wallpapers-img" src="<?= $row['small'] ?>" <?= $row['width'] ?> alt='<?= $row['title'] ?>' title='<?= $row['title'] ?>'/></a>
+            </div>
+        <? } ?>
+        <div class="empty"></div>
+        <? if (isset($mWallpapersPageUrl) and !empty($mWallpapers)) cmfPagination::view($mWallpapersPageUrl) ?>
+    </div>
+
+</div>
+<div class="empty"></div>
+<script>
+    cmf.main.slides.init();
+    $(document).ready(function() {
+        var setFotoCookie = function(id) {
+            $.cookie('idFotoWallpapers', id, {
+                expires: 12,
+                path : '/',
+                domain : '.' + document.location.host
+            });
+        };
+        $('.yachttype-wallpapers .tabsList li').click(function() {
+            setFotoCookie($(this).attr('id'));
+        });
+        $('.box-foto .pages a, .box-wallpapers .pages a').click(function() {
+            setFotoCookie($(this).closest('.box').attr('data-id'));
+            return true;
+        });
+        if($.cookie('idFotoWallpapers')=='foto') {
+            $('.box-wallpapers').removeClass('visible');
+            $('.box-foto').addClass('visible');
+            $('#wallpapers').removeClass('current');
+            $('#foto').addClass('current');
+        }
+    });
+</script>

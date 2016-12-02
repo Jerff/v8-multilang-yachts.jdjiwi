@@ -1,0 +1,114 @@
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>
+
+
+<?=$main_edit->htmlStartForm() ?>
+<table class="great_table">
+<tr class="header_col">
+<td colspan="3">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="svet_td">&nbsp;</td>
+<td class="svet_td2 selectCheckbox" colspan="2">
+    <?=$form->label('visible', 'Отображать') ?><?=$form->html('visible') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Наименование:</td>
+<td class="svet_td2" colspan="2">
+    <?=$main_edit->langViewTranslate('name') ?>
+    <?=$langForm->html('name', 'class="width50"') ?>
+    <?/*=$form->html('search', 'class="width50" rows="3"')*/ ?>
+    </td>
+</tr>
+
+<tr>
+<td class="svet_td">Единицы измерения:</td>
+<td class="svet_td2" colspan="2">
+    <?=$main_edit->langViewTranslate('prefix') ?>
+    <?=$langForm->html('prefix', 'class="width25"') ?>
+    <? /*<br /><?=$form->html('prefixParse', 'class="width50" rows="3"') ?>
+    <br /><?=$form->html('parseType', 'class="width50"') ?>*/ ?>
+    </td>
+</tr>
+
+<tr>
+<td class="svet_td">Помощь:</td>
+<td class="svet_td2" colspan="2">
+    <?=$main_edit->langViewTranslate('notice') ?>
+    <?=$langForm->html('notice') ?></td>
+</tr>
+
+<tr>
+<td class="svet_td">Тип:</td>
+<td class="svet_td2" colspan="2"><?=$form->html('type', 'class="width50" onchange="cmf.pages.typeShange();"') ?>
+<script language="JavaScript">
+cmf.pages.typeShange = function() {
+	switch(cmf.getValue('<?=$form->getId('type') ?>')) {
+		case 'select':
+		case 'radio':
+		case 'checkbox':
+			$('.typeSelect').each(function() {
+				cmf.admin.showLine(this);
+			});
+		    break;
+		default:
+			$('.typeSelect').each(function() {
+				cmf.admin.hideLine(this);
+			});
+			break;
+	}
+};
+cmf.pages.typeShange();
+</script>
+</td>
+</tr>
+
+<? if($main_edit->getid()) { ?>
+<tr>
+<td class="svet_td typeSelect">Параметры:</td>
+<td class="svet_td3 typeSelect" id="paramView">
+<?	if($data->get('value')) {
+		$value = unserialize($data->value);
+		$param = array();
+		foreach($value as $k=>$v) {
+			$param[$k .' '. cmfHtmlSpecialchars($v)] = cmfHtmlSpecialchars($v);
+		}
+?>
+<select size="25" class="width99" onchange="cmf.pages.select(this.value);">
+<? foreach($param as $k=>$v) { ?>
+   <option value="<?=$k ?>"><?=$v ?></option>
+<? } ?>
+</select>
+<?
+	}
+
+?>
+</td>
+<td class="svet_td3 typeSelect width50">
+<div id="paramLog" class="cmfHide errorDiv"></div>
+<input name="paramId" id="paramId" type="hidden" value="">
+<input name="paramValue" id="paramValue" type="text" value="" style="width:80%">
+<br /><br /><input type="button" value=" Сохранить " onclick="modul.postAjax('paramUpdate');">&nbsp;&nbsp;&nbsp;<input type="button" value=" Добавить " onclick="modul.postAjax('paramAdd');">
+<br /><br /><input type="button" value=" Удалить " onclick="modul.postAjax('paramDelete');">
+<script language="JavaScript">
+cmf.pages.select = function(value) {
+	var value = (new RegExp('([0-9]+) (.*)')).exec(value)
+	cmf.setValue('paramId', value[1]);
+	cmf.setValue('paramValue', value[2]);
+};
+</script>
+</td>
+</tr>
+<? } ?>
+
+</table>
+<?=$main_edit->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+	                   cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться')) ?>

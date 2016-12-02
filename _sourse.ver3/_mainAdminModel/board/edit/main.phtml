@@ -1,0 +1,106 @@
+<? isset($menu) ? view_menu::viewMenu($menu) : '' ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>
+
+
+<?= $main_edit->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td colspan="2"><?= $main_edit->viewSiteUrl() ?></td>
+    </tr>
+
+    <? if (isset($listUser[$data->user])) { ?>
+        <tr>
+            <td class="svet_td">Профайл пользователя</td>
+            <td class="svet_td2"><?= cmfAdminView::buttonType3($main_edit->getUserUrl($data->user), $listUser[$data->user]) ?></td>
+        </tr>
+    <? } ?>
+
+    <tr>
+        <td class="svet_td">&nbsp;</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->label('moder', 'Модерировано') ?><?= $form->html('moder') ?>
+            <?= $form->label('main', 'Вверху списка') ?><?= $form->html('main') ?>
+            <?= $form->label('visible', 'Отображать') ?><?= $form->html('visible') ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Дата начала:</td>
+        <td class="svet_td2" id="f_date3">
+            <?= $form->html('date', 'class="width25" onfocus="cmf.admin.calendar.focus(this);"') ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Дата окончания показа:</td>
+        <td class="svet_td2" id="f_date3">
+            <?= $form->html('dateEnd', 'class="width25" onfocus="cmf.admin.calendar.focus(this);"') ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Заголовок:</td>
+        <td class="svet_td2">
+            <?= $form->html('name', 'class="width99"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Объявление:</td>
+        <td class="svet_td2">
+            <?= $form->html('notice', 'class="width99" rows="7"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Изображение:</td>
+        <td class="svet_td2"><?= $main_edit->getImageMulti('main', 'image') ?></td>
+    </tr>
+
+    <? /*
+    <tr>
+        <td class="svet_td">Телефон:</td>
+        <td class="svet_td2">
+            <?= $form->html('phone', 'class="width99"') ?></td>
+    </tr>*/ ?>
+
+    <tr>
+        <td class="svet_td">Контакты:</td>
+        <td class="svet_td2">
+            <?= $form->html('contact', 'class="width99"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Параметры:</td>
+        <td class="svet_td2">
+            <table width="75%">
+                <? foreach ($param as $k => $v) { ?>
+                    <tr>
+                        <td width="25%"><?= $v['name'] ?></td>
+                        <td width="50%"><?= $form->html('paramKey' . $k, 'class="width99"') ?></td>
+                        <td width="25%"><?= $form->html('paramValue' . $k, 'class="width99"') ?></td>
+                    </tr>
+                <? } ?>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Цена:</td>
+        <td class="svet_td2">
+            <?= $form->html('price', 'class="width25"') ?><?= $form->html('currency') ?></td>
+    </tr>
+
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>

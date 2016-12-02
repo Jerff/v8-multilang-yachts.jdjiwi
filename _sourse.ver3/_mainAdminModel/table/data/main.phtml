@@ -1,0 +1,53 @@
+	<table class="table_position">
+	<tr class="header_col">
+	<td>Раздел: <?=cmfView::selectOncahge($filterTable) ?></td>
+	</tr>
+	</table>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>
+
+
+<?= $main_list->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td width="22px">#</td>
+
+        <? foreach (cmfGlobal::get('filedList') as $index => $value) { ?>
+        <td width="<?=(int)(75/cmfGlobal::get('fieldColum')) ?>%">Столбец <?=$index?></td>
+        <? } ?>
+
+        <td width="22px">Вид</td>
+        <td width="22px">Удалить</td>
+    </tr>
+
+    <?
+    foreach ($main_list as $key => $value) {
+        list($form, $data) = $value->main;
+        list($formLang, $dataLang) = $value->lang;
+        ?>
+        <?= view_list::startTR($main_list) ?>
+        <?= $main_list->getPostMove($data) ?>
+
+        <? foreach (cmfGlobal::get('filedList') as $index => $value) { ?>
+            <td><?=$form->html('field'. $index, 'width="99%"') ?></td>
+        <? } ?>
+
+        <td><?= $form->html('visible') ?></td>
+        <td>
+            <?= $main_list->getHtmlListId(); ?>
+            <?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+        </td>
+    </tr>
+<? } ?>
+</table>
+<?= $main_list->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить'))
+?>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="board" name="Доска объявлений">
+		<menu>
+			<link name="/admin/board/" menu="Доска объявлений"/>
+			<link name="/admin/board/edit/"/>
+			<link name="/admin/param/board/notice/" menu="Параметры"/>
+			<link name="/admin/user/" menu="Пользователи"/>
+			<link name="/admin/user/edit/"/>
+		</menu>
+		<pages>
+			<page name="/admin/board/" subpath="list"></page>
+			<page name="/admin/board/edit/"></page>
+			<page name="/admin/board/param/"></page>
+		</pages>
+		<rules>
+			<rule id="board">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

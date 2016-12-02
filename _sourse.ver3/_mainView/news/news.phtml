@@ -1,0 +1,6 @@
+<h1><?=$news['header'] ?></h1>
+<? if(!empty($news['image'] )) { ?>
+    <img src="<?=$news['image'] ?>" alt="<?=$news['title'] ?>" class="img-left"/>
+<? } ?>
+<?=$news['content'] ?>
+<div class="empty"></div>

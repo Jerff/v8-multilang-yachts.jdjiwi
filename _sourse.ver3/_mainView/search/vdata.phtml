@@ -1,0 +1,6 @@
+            <? foreach($search as $id=>$row) { ?>
+            <div class="stat_1" id=<?=$id ?>>
+                <p class="stat_p"><a href="<?=$row['url'] ?>"><?=$row['name'] ?></a></p>
+                <p><?=$row['notice'] ?></p>
+            </div>
+            <? } ?>

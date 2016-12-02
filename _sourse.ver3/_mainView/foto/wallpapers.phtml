@@ -1,0 +1,31 @@
+    <div class="text_block3">
+
+        <div class="vkladki">
+            <ul class="vk vk_margin">
+            <li><a href="<?=$fotoUrl ?>">ФОТО ЯХТ</a></li>
+            <li id="v_active"><a href="<?=$wallpapersUrl ?>">ФОТО ЯХТ(ОБОИ)</a></li>
+            </ul>
+        </div>
+
+        <div class="highslide-gallery" id="scroll_vertical" style="max-height:550px;">
+        <? foreach($_foto as $row) { ?>
+            <a class='highslide' href="<?=$row['main'] ?>" onclick="return hs.expand(this)">
+            <img src="<?=$row['small'] ?>"  alt='<?=$row['title'] ?>' title='<?=$row['title'] ?>'/></a>
+        <? } ?>
+        </div>
+
+        <div class="spacerYachts"></div>
+        <?=$content ?>
+    </div>
+
+<script>
+<? if(isset($count)) { ?>
+cmf.main.scroll.init(<?=$count ?>, <?=$limit ?>, function($obj) {
+    $obj.load('wallpapers/vdata/' + $obj.attr('offset') + '/');
+});
+<? } else { ?>
+cmf.main.scroll.initFull();
+<? } ?>
+
+cmf.main.slides.init();
+</script>

@@ -1,0 +1,38 @@
+	<table class="table_position">
+	<tr class="header_col">
+	<td>Раздел: <?=cmfView::selectOncahge($filterSection) ?></td>
+	</tr>
+	</table>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>
+
+
+<?=$main_list->htmlStartForm() ?>
+	<table class="great_table">
+	<tr class="header_col">
+	<td>Название</td>
+	<td width="300px">Описание</td>
+	<td width="22px">Удалить</td>
+	</tr>
+
+<?	foreach($main_list as $key=>$value){
+		list($form, $data) = $value->main;
+	 ?>
+	<?=view_list::startTR($main_list) ?>
+
+	<td><?=cmfAdminView::buttonType3($main_list->getEditUrl(), $data->name) ?></td>
+	<td><?=$data->notice ?></td>
+	<td>
+		<?=$main_list->getHtmlListId(); ?>
+		<?=cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+	</td>
+	</tr>
+<? } ?>
+	</table>
+<?=$main_list->htmlEndForm() ?>
+
+	<? view_command::viewLineButton(
+	                   cmfAdminView::buttonType2($main_list->getNewUrl(), 'Добавить') .
+	                   cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить')) ?>

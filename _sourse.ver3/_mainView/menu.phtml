@@ -1,0 +1,30 @@
+                <ul class="left_menu">
+                <li><a href="<?=get($_root, 'arenda') ?>" class="arenda"></a>
+                    <ul class="submenu1">
+                    <?  end($_menu['arenda']);
+                        $end = key($_menu['arenda']);
+                        foreach($_menu['arenda'] as $k=>$row) if(!isset($row['hide'])) { ?>
+                        <li class="level<?=$row['level'] ?>" <? if($end==$k) { ?>id="list_last"<? } ?>><a href="<?=$row['url'] ?>"><?=$row['name'] ?></a></li>
+                    <? } ?>
+                    </ul>
+                </li>
+                <li><a href="<?=get($_root, 'sale') ?>" class="sale"></a>
+                    <ul class="submenu2">
+                    <?  end($_menu['sale']);
+                        $end = key($_menu['sale']);
+                        foreach($_menu['sale'] as $k=>$row) if(!isset($row['hide'])) { ?>
+                        <li <? if($end==$k) { ?>id="list_last"<? } ?>><a href="<?=$row['url'] ?>"><?=$row['name'] ?></a></li>
+                    <? } ?>
+                    </ul>
+                </li>
+                <li><a href="<?=get($_root, 'info') ?>" class="info"></a>
+                    <ul class="submenu3">
+                    <?  end($_menu['info']);
+                        $end = key($_menu['info']);
+                        foreach($_menu['info'] as $k=>$row) if(!isset($row['hide'])) { ?>
+                        <li <? if($end==$k) { ?>id="list_last"<? } ?>><a href="<?=$row['url'] ?>"><?=$row['name'] ?></a></li>
+                    <? } ?>
+                    </ul>
+
+                </li>
+                </ul>

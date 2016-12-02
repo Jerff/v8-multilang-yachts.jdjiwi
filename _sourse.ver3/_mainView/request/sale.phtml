@@ -1,0 +1,92 @@
+    <div class="text_block3">
+
+        <div class="vkladki">
+            <ul class="vk vk_margin">
+            <li><a href="<?=$arendaUrl ?>">Аренда</a></li>
+            <li id="v_active"><a href="<?=$saleUrl ?>">ПРОДАЖА</a></li>
+
+            </ul>
+        </div>
+
+
+       <?=$request->startForm('class="prodaja"','sale') ?>
+       <p class="prodaja_p1">поля, отмеченные  <span class="prodaja_red">*</span>, обязательны для заполнения </p>
+
+       <div class="form_prodaja">
+       <?=$request->formError() ?>
+            <? if(isset($yachts)) { ?>
+                <p class="p1">Ваши персональные данные для заказа "<?=$yachts ?>"</p>
+            <? } else { ?>
+                <p class="p1">Ваши персональные данные и подбора яхты</p>
+            <? } ?>
+            <ol>
+
+                    <li class="cmfHide">
+                      <label for="">Логин:
+                      <br /><?=$contact->viewError('login') ?></label>
+                      <?=$contact->html('login', 'class="i_text"') ?>
+                    </li>
+                    <li class="cmfHide">
+                      <label for="">Яхта:
+                      <br /><?=$data->viewError('yachts') ?></label>
+                      <?=$data->html('yachts', 'class="i_text"') ?>
+                    </li>
+                    <li id="li_first">
+                      <label for="">Ф.И.О.: <em>*</em>
+                      <br /><?=$contact->viewError('name') ?></label>
+                      <?=$contact->html('name', 'class="i_text"') ?>
+                    </li>
+                    <? /*
+                    <li>
+                      <label for="">Фамилия: <em>*</em>
+                      <br /><?=$contact->viewError('familyName') ?></label>
+                      <?=$contact->html('familyName', 'class="i_text"') ?>
+                    </li>
+                    <li>
+                      <label for="">Отчество: <em>*</em>
+                      <br /><?=$contact->viewError('patronymic') ?></label>
+                      <?=$contact->html('patronymic', 'class="i_text"') ?>
+                    </li> */ ?>
+                    <li>
+                      <label for="">Ваш E-Mail: <em>*</em>
+                      <br /><?=$contact->viewError('email') ?></label>
+                      <?=$contact->html('email', 'class="i_text"') ?>
+                    </li>
+                    <li>
+                      <label for="">Телефон: <em>*</em>
+                      <br /><?=$contact->viewError('phone') ?></label>
+                      <?=$contact->html('phone', 'class="i_text"') ?>
+                    </li>
+
+                    <li>
+                      <label for="">Бюджет:
+                      <br /><?=$data->viewError('budget') ?></label>
+                      <? $text='пример: от 5 000 000 евро до 8 000 000 евро' ?>
+                      <?=$data->html('budget', 'class="i_text" value="'. $text .'" onfocus="cmf.form.text.onFocus(this, \''. $text .'\');" onblur="cmf.form.text.onBlur(this, \''. $text .'\');"') ?>
+                    </li>
+                    <li>
+                      <label for="">Длина яхты:
+                      <br /><?=$data->viewError('length') ?></label>
+                      <? $text='пример: 45 метров' ?>
+                      <?=$data->html('length', 'class="i_text" value="'. $text .'" onfocus="cmf.form.text.onFocus(this, \''. $text .'\');" onblur="cmf.form.text.onBlur(this, \''. $text .'\');"') ?>
+                    </li>
+                    <li <? if(isset($shipyards)) { ?>class="cmfHide"<? } ?>>
+                      <? if(isset($shipyards)) { ?><input name="type" type="hidden" value="shipyards"><? } ?>
+                      <label for="">Год выпуска:
+                      <br /><?=$data->viewError('year') ?></label>
+                      <?=$data->html('year', 'class="i_text"') ?>
+                    </li>
+                    <li>
+                      <label for="">Текст сообщения: <em>*</em>
+                      <br /><?=$data->viewError('notice') ?></label>
+                      <?=$data->html('notice', 'class="textarea_acv"') ?>
+                    </li>
+            </ol>
+       </div>
+
+       <button class="p_send" onclick="_gaq.push(['_trackEvent', 'button2', 'prodaja'])"></button>
+       <?=$request->endForm() ?>
+
+        <div class="spacerYachts"></div>
+        <?=$content ?>
+    </div>

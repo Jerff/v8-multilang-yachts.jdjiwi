@@ -1,0 +1,126 @@
+<h1 class="contactform-h1"><?= word('Добавить объявление') ?></h1>
+<div class="content-info">
+    <?= $boardContent ?>
+</div>
+<div class="contactform contactform-user contactform-user-content script-page-board-add">
+    <div id="feedback">
+        <?= $boardAdd->startForm('', word('Добавить объявление')) ?>
+        <?= $boardAdd->formError() ?>
+        <input name="formid" type="hidden"  value="board-add" />
+        <p class="cmfHide">
+            <?= $config->viewError('email') ?>
+            <label><span style="color: #ff0000;">*</span> <?= word('Фамилия, имя, отчество') ?></label>
+            <?= $config->html('email', 'class=""') ?>
+        </p>
+        <? if (empty($isUser)) { ?>
+            <p>
+                <?= $config->viewError('login') ?>
+                <label><span style="color: #ff0000;">*</span> <?= word('Электронная почта') ?></label>
+                <?= $config->html('login', 'class=""') ?>
+                <span class="formwrap_text">
+                    <?= $config->html('register', 'class="" onchange="changeRegister(this);"') ?>
+                    <script>
+                        function changeRegister(t) {
+                            if ($(t).is(':checked')) {
+                                $('.register-password').show();
+                                $('#register-header').removeClass('register-chekbox');
+                            } else {
+                                $('#register-header').addClass('register-chekbox');
+                                $('.register-password').hide();
+                            }
+                        }
+                    </script>
+                </span>
+            </p>
+            <div class="empty"></div>
+            <p class="register-password register-chekbox" id="register-header-1">
+                <?= $password->viewError('password') ?>
+                <label><span style="color: #ff0000;">*</span> <?= word('Пароль') ?></label>
+                <?= $password->html('password', 'class=""') ?>
+            </p>
+            <p class="register-password">
+                <?= $password->viewError('password2') ?>
+                <label><span style="color: #ff0000;">*</span> <?= word('Повторите пароль') ?></label>
+                <?= $password->html('password2', 'class=""') ?>
+            </p>
+        <? } ?>
+        <p id="register-header">
+            <?= $board->viewError('name') ?>
+            <label><span style="color: #ff0000;">*</span> <?= word('Заголовок') ?></label>
+            <?= $board->html('name', 'class=""') ?>
+        </p>
+        <p>
+            <label>&nbsp; <?= word('Дата показа') ?></label>
+            <?= $board->html('dateEnd', 'class="dateInput"') ?>
+            <span class="period"><?= word('до') ?></span>
+            <?= $board->html('date', 'class="dateInput"') ?>
+            <span class="period"><?= word('с') ?></span>
+            <script>
+                jQuery(function ($) {
+                    $(".dateInput").mask("99-99-2019");
+                });
+            </script>
+        </p>
+        <p>
+            <?= $board->viewError('image') ?>
+            <label>&nbsp; <?= word('Изображение') ?></label>
+            <span class="images-form">
+                <span class="images-board cmfHide">
+                    <span class="formError formErrorImage" id="formErrorImage{key}"></span>
+                    <?= $board->html('image', 'class=""') ?>
+                    <span class="images-click">
+                        <span>[Удалить]</span>
+                        <span>[Добавить]</span>
+                    </span>
+                </span>
+            </span>
+            <script>
+                cmf.form.images.init($('.images-form'));
+            </script>
+        </p>
+        <div class="empty"></div>
+        <?
+        $i = 0;
+        foreach ($param as $id => $row) {
+            ?>
+            <p class="position-relative <?= $i++ ? '' : 'board-param-first' ?>">
+                <?= $board->viewError('paramValue' . $id) ?>
+                <label><span style="color: #ff0000;">*</span> <?= $row['name'] ?></label>
+                <?= $board->html('paramValue' . $id, 'class=""') ?>
+                <span class="currencySelect paramSelect"><?= $board->html('paramKey' . $id, 'class=""') ?></span>
+            </p>
+        <? } ?>
+        <? /* <p>
+          <?= $board->viewError('phone') ?>
+          <label><span style="color: #ff0000;">*</span> <?= word('Номер телефона') ?></label>
+          <?= $board->html('phone', 'class=""') ?>
+          </p> */ ?>
+        <p>
+            <?= $board->viewError('contact') ?>
+            <label><span style="color: #ff0000;">*</span> <?= word('Контакты') ?></label>
+            <?= $board->html('contact', 'class=""') ?>
+        </p>
+        <div class="empty"></div>
+        <p>
+            <?= $board->viewError('notice') ?>
+            <label><span style="color: #ff0000;">*</span> <?= word('Текст объявления') ?></label>
+            <?= $board->html('notice', 'class=""') ?>
+        </p>
+        <div class="empty"></div>
+        <p class="position-relative">
+            <?= $board->viewError('price') ?>
+            <label><span style="color: #ff0000;">*</span> <?= word('Цена') ?></label>
+            <?= $board->html('price', 'class=""') ?>
+            <span class="currencySelect price-cerrency"><?= $board->html('currency', 'class=""') ?></span>
+        </p>
+        <!--        <div class="captcha">
+                    <p>Введите код:</p>
+                    <p><img src="/manager/includes/veriword.php?rand=7653" alt="Код проверки" />&nbsp;&nbsp;<span class="formwrap_small"><input class="vericodeform" name="vericode" type="text" value="" /></span></p>
+                </div>-->
+        <p>
+            <input type="submit" value="<?= word('Отправить') ?>" />
+        </p>
+        <p class="clear"><span style="font-size: 90%;"><?= word('Поля отмеченные') ?> <span style="color: #ff0000;">* </span><?= word('обязательны для заполнения') ?>.</span></p>
+        <?= $boardAdd->endForm() ?>
+    </div>
+</div>

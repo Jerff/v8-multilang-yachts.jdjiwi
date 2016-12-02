@@ -1,0 +1,222 @@
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>
+
+
+
+<?= $main_edit->htmlStartForm() ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td colspan="2"><?= $main_edit->viewSiteUrl() ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">&nbsp;</td>
+        <td class="svet_td2 selectCheckbox">
+            <?= $form->label('visible', 'Отображать') ?><?= $form->html('visible') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Каталог:</td>
+        <td class="svet_td2"><?= $form->html('parent', 'class="width50"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Адрес:</td>
+        <td class="svet_td2"><?= $form->html('uri', 'class="width25"') ?><?= $form->html('url', 'class="width25"') ?>
+            <?= $form->label('isUrl', 'Использовать абсолютный адресс') ?><?= $form->html('isUrl', 'onchange="cmf.pages.isUrl();"') ?>
+
+            <script language="JavaScript">
+                cmf.pages.isUrl = function() {
+                    if(cmf.isChecked('<?= $form->getId('isUrl') ?>')) {
+                        $('#<?= $form->getId('url') ?>').show();
+                        $('#<?= $form->getId('uri') ?>').hide();
+                    } else {
+                        $('#<?= $form->getId('uri') ?>').show();
+                        $('#<?= $form->getId('url') ?>').hide();
+                    }
+                }
+                cmf.pages.isUrl();
+            </script>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Заголовок:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('name') ?>
+            <?= $langForm->html('name', 'class="width99"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Название в подборе на главной:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('name_search') ?>
+            <?= $langForm->html('name_search', 'class="width50"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Телефон:</td>
+        <td class="svet_td2"><?= $form->html('phone', 'class="width50"') ?></td>
+    </tr>
+
+    <tr>
+        <td class="svet_td">Параметры:</td>
+        <td class="svet_td2"><?= $form->html('type', 'class="width25" onchange="cmf.pages.isType();"') ?>
+
+            <? if ($isEdit) { ?>
+                <div class="typeMap">
+                    <div class="cursor">Показать параметры</div>
+
+                    <div class="mapParam cmfHide">
+                        <br />Флеш карта
+                        <br /><?= $main_edit->getImage('main', 'flash') ?>
+                        <br /><br />Параметры карты
+                        <br /><?= $form->html('flashXml', 'class="width99" rows="10" style="position: relative;" wrap="off"') ?>
+
+                        <br />Список мест
+                        <table width="100%">
+                            <?
+
+                            function viewFlashParam($list, $parent = 0, $level = 0) {
+                                if (!isset($list[$parent]))
+                                    return;
+                                foreach ($list[$parent] as $k => $v) {
+                                    ?>
+                                    <tr class="columnn_svet2">
+                                        <td width="20%" style="padding-left:<?= 10 + 15 * $level ?>px"><?= $v['name'] ?></td>
+                                        <td width="40%"><?= $v['image'] ?></td>
+                                        <td width="40%"><?= $v['url'] ?></td>
+                                    </tr>
+                                    <? viewFlashParam($list, $k, $level + 1) ?>
+                                    <?
+                                }
+                            }
+
+                            viewFlashParam($main_edit->getFlashParamList(), $main_edit->getId());
+                            ?>
+                        </table>
+                        <br /><br />Альтернативный контент
+                        <br />
+                        <?= $main_edit->langViewTranslate('flashContent') ?>
+                        <?= $langForm->html('flashContent', 200) ?>
+                    </div>
+                </div>
+
+                <div class="typeYachts">
+                    <br />Изображение для карты
+                    <br /><?= $main_edit->getImage('main', 'yachtsListImage') ?>
+                    <br />Заголовок для списка яхт
+                    <br />
+                    <?= $main_edit->langViewTranslate('yachtsListHeader') ?>
+                    <?= $langForm->html('yachtsListHeader', 'class="width50"') ?>
+                    <br />Заголовок для ccылки на все яхты
+                    <br />
+                    <?= $main_edit->langViewTranslate('yachtsListUrl') ?>
+                    <?= $langForm->html('yachtsListUrl', 'class="width50"') ?>
+                </div>
+
+                <script language="JavaScript">
+                    cmf.pages.isType = function() {
+                        pre(cmf.getValue('<?= $form->getId('type') ?>'));
+                        switch(cmf.getValue('<?= $form->getId('type') ?>')) {
+                            case 'none':
+                                $('.typeMap').hide();
+                                $('.typeYachts').hide();
+                                cmf.admin.hideShowList('.typeYachtsList', false);
+                                break;
+
+                            case 'yachts':
+                                $('.typeYachts').show();
+                                cmf.admin.hideShowList('.typeYachtsList', true);
+                                $('.typeMap').hide();
+                                break;
+
+                            case 'map':
+                                $('.typeMap').show();
+                                $('.typeYachts').hide();
+                                cmf.admin.hideShowList('.typeYachtsList', false);
+                                break;
+                            }
+                        }
+                        $('.typeMap .cursor').click(function() {
+                            if(style.hideShow('.typeMap .mapParam')) {
+                                $(this).html('Скрыть параметры');
+                                cmf.admin.gallery.show();
+                                $('#<?= $form->getId('flashXml') ?>').resizable();
+                            } else {
+                                $(this).html('Показать параметры');
+                                cmf.admin.gallery.hide();
+                            }
+                        });
+                        cmf.pages.isType();
+                </script>
+            <? } ?>
+        </td>
+    </tr>
+
+    <? if ($isEdit) { ?>
+        <tr>
+            <td class="svet_td">Подробный текст:</td>
+            <td class="svet_td2">
+                <?= $main_edit->langViewTranslate('content') ?>
+                <?= $langForm->html('content', 300) ?></td>
+        </tr>
+
+        <tr class="header_col">
+            <td colspan="2">Seo <span class="typeYachts">для страницы аренды</span></td>
+        </tr>
+        <tr>
+            <td class="svet_td">title:</td>
+            <td class="svet_td2">
+                <?= $main_edit->langViewTranslate('title') ?>
+                <?= $langForm->html('title', 'class="width99" rows="3"') ?></td>
+        </tr>
+        <tr>
+            <td class="svet_td">keywords:</td>
+            <td class="svet_td2">
+                <?= $main_edit->langViewTranslate('keywords') ?>
+                <?= $langForm->html('keywords', 'class="width99" rows="3"') ?></td>
+        </tr>
+        <tr>
+            <td class="svet_td">description:</td>
+            <td class="svet_td2">
+                <?= $main_edit->langViewTranslate('description') ?>
+                <?= $langForm->html('description', 'class="width99" rows="3"') ?></td>
+        </tr>
+    <? } ?>
+
+    <tr class="header_col typeYachtsList">
+        <td colspan="2">Seo для страницы спискат всех яхт</span></td>
+    </tr>
+    <tr class="typeYachtsList">
+        <td class="svet_td">title:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('title2') ?>
+            <?= $langForm->html('title2', 'class="width99" rows="3"') ?></td>
+    </tr>
+    <tr class="typeYachtsList">
+        <td class="svet_td">keywords:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('keywords2') ?>
+            <?= $langForm->html('keywords2', 'class="width99" rows="3"') ?></td>
+    </tr>
+    <tr class="typeYachtsList">
+        <td class="svet_td">description:</td>
+        <td class="svet_td2">
+            <?= $main_edit->langViewTranslate('description2') ?>
+            <?= $langForm->html('description2', 'class="width99" rows="3"') ?></td>
+    </tr>
+
+</table>
+<?= $main_edit->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("modul.postAjaxSave('update');", 'Сохранить') .
+        cmfAdminView::buttonType1("modul.postAjax('update');", 'Применить') .
+        cmfAdminView::buttonType2($main_edit->getCatalogUrl(), 'Вернуться'))
+?>

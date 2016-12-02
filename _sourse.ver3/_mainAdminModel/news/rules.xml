@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="news" name="Новости">
+		<menu>
+			<link name="/admin/news/" menu="Новости"/>
+			<link name="/admin/news/edit/" select="slider" submenu="Информация"/>
+    		<link name="/admin/news/edit/slider/" select="slider" submenu="Слайд шоу"/>
+			<link1 name="/admin/news/info/" menu="Информация"/>
+		</menu>
+		<pages>
+			<page name="/admin/news/" subpath="list"></page>
+			<page name="/admin/news/edit/"></page>
+			<page name="/admin/news/edit/slider/" preg="/(news)/edit/slider/" path="main/slider/list"/>
+
+			<page1 name="/admin/news/info/" preg="/(news)/info/" path="main/info"/>
+		</pages>
+		<rules>
+			<rule id="news">
+				<elements>
+					<element>edit</element>
+					<element>list</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

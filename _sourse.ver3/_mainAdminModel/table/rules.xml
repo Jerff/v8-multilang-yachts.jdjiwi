@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moduls package="Информация">
+	<modul id="table" name="Таблицы">
+			<menu>
+				<link name="/admin/table/" menu="Таблицы"/>
+				<link name="/admin/table/edit/"/>
+				<link name="/admin/table/data/" menu="Данные"/>
+			</menu>
+		<pages>
+			<page name="/admin/table/" subpath="list"/>
+			<page name="/admin/table/edit/"/>
+			<page name="/admin/table/data/"/>
+		</pages>
+		<rules>
+			<rule id="table">
+				<elements>
+					<element>list</element>
+					<element>edit</element>
+					<element>data</element>
+					<element>data/lang</element>
+				</elements>
+			</rule>
+		</rules>
+	</modul>
+</moduls>

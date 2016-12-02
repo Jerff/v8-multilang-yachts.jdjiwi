@@ -1,0 +1,50 @@
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("list.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("list.postAjax('update');", 'Применить'))
+?>
+
+
+<?= $main_list->htmlStartForm('list') ?>
+<table class="great_table">
+    <tr class="header_col">
+        <td width="22px">#</td>
+        <td width="200px">Раздел</td>
+        <td width="200px">Тип</td>
+        <td>Яхта</td>
+        <td width="22px">Вид</td>
+        <td width="22px">Уд.</td>
+    </tr>
+
+    <?
+    foreach ($main_list as $key => $value) {
+        if ($key)
+            $product = $main_list->loadForm2();
+        else
+            $product = array();
+        list($form, $data) = $value->main;
+
+        $id = $main_list->getIndex();
+        ?>
+        <?= view_list::startTR($main_list) ?>
+        <?= $main_list->getPostMove($data) ?>
+        <td><?= $form->html('page', 'class="width99" onchange="list.postAjax(\'onchangePage\', '. $key .' ? '. $key .' : $(this).attr(\'keyIndex\'));"') ?></td>
+        <td><?= $form->html('type', 'class="width99" onchange="list.postAjax(\'onchangePage\', '. $key .' ? '. $key .' : $(this).attr(\'keyIndex\'));"') ?></td>
+        <td><?= $form->html('yachts', 'class="width99"') ?></td>
+        <td><?= $form->html('visible') ?></td>
+        <td>
+            <?= $main_list->getHtmlListId(); ?>
+            <?= cmfAdminView::onclickType1("modul.deleteAjax(this, '$key');", 'Удалить') ?>
+        </td>
+    </tr>
+    </tr>
+<? } ?>
+</table>
+<?= $main_list->htmlEndForm() ?>
+
+<?
+view_command::viewLineButton(
+        cmfAdminView::buttonType1("list.postAjax('newLine');", 'Добавить') .
+        cmfAdminView::buttonType1("list.postAjax('update');", 'Применить'))
+?>

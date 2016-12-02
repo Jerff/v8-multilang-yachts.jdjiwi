@@ -1,0 +1,56 @@
+<? if (isset($mYachts)) { ?>
+    <div class="yachttype yachttype-sale">
+        <ul class="tabs tabsList">
+            <? foreach ($mType as $id => $row) { ?>
+                <li class="<? if (isset($row['sel'])) { ?>current<? } ?> <? if (!isset($row['menu'])) { ?>current-all<? } ?>"><span>
+                        <?= $row['name'] ?>
+                    </span>
+                    <? if (isset($row['menu'])) { ?>
+                        <br><?= $row['menu'] ?></li>
+                <? } ?>
+            <? } ?>
+        </ul>
+        <? foreach ($mType as $typeId => $type) { ?>
+            <div class="box <? if (isset($type['sel'])) { ?>visible<? } ?>" <? if (isset($type['scroll'])) { ?> id="scroll_vertical1"<? } ?>>
+                <?
+                if (isset($mYachtsList[$typeId]))
+                    foreach ($mYachtsList[$typeId] as $id) {
+                        $row = $mYachts[$id];
+                        ?>
+                        <div class="rent rent-arenda1">
+                            <a href="<?= $row['url'] ?>" class="aboutyacht"></a>
+                            <p><img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>" <?= $row['width'] ?>/></p>
+                            <div class="name"><?= $row['name'] ?></div>
+                            <div class="size"><?= $row['param1'] ?></div>
+                            <? if (!empty($row['param2'])) { ?>
+                                <div class="region"><?= $row['param2'] ?></div>
+                            <? } ?>
+                            <? if (!empty($row['param3'])) { ?>
+                                <div class="seating"><?= $row['param3'] ?> Чел.</div>
+                            <? } ?>
+                            <div class="type"></div>
+                            <!--<div class="arendaPrice">Стоимость <br>аренды:</div>-->
+                            <div class="price">
+                                <? if ($row['priceHour'] !== word('по запросу')) { ?>
+                                    <?= word('Цена за час') ?>: <?= $row['priceHour'] ?>
+                                <? } else if ($row['priceLightDay'] !== word('по запросу')) { ?>
+                                    <?= word('Цена за 12 часов') ?>: <?= $row['priceLightDay'] ?>
+                                <? } else if ($row['priceDay'] !== word('по запросу')) { ?>
+                                    <?= word('Сутки') ?>: <?= $row['priceDay'] ?>
+                                <? } else if ($row['priceWeek'] !== word('по запросу')) { ?>
+                                    <?= word('Неделя') ?>: <?= $row['priceWeek'] ?>
+                                <? } ?>
+                            </div>
+                            <? /*
+                              <div class="price">
+                              <?= word('час') ?>: <?= $row['priceHour'] ?>
+                              <br><?= word('12 часов') ?>: <?= $row['priceLightDay'] ?>
+                              <br><?= word('сутки') ?>: <?= $row['priceDay'] ?>
+                              <br><?= word('неделя') ?>: <?= $row['priceWeek'] ?>
+                              </div> */ ?>
+                        </div>
+                    <? } ?>
+            </div>
+        <? } ?>
+    </div>
+<? } ?>
